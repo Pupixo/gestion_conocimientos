@@ -1,0 +1,51 @@
+  .image-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(95, 45, 204, 0.54); /* Color morado con transparencia */
+    mix-blend-mode: multiply;
+  }
+
+  /* Define la animación para deslizar el fondo hacia arriba */
+@keyframes slideUp {
+  0% {
+      background-position: center bottom;
+  }
+  100% {
+      background-position: center center;
+  }
+}
+
+/* Clase para aplicar la animación */
+.animate-bg {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  height: 200px;
+  background-image: url(https://luma.humatheme.com/public/images/paths/sketch_430x168.png);
+
+  /* Aplica la animación con una duración de 1 segundo y suavidad */
+  animation: slideUp 1s ease-out forwards;
+}
+
+
+movement{
+  background-color: #397d37;
+}
+
+movement:hover {
+  background-color: #397d37;
+  display: block; position: relative; overflow: hidden; background-image: 
+  url(https://luma.humatheme.com/public/images/paths/flinto_430x168.png); 
+  background-size: cover; background-position: center center; height: 200px;
+}
+
+
+.swal2-container {
+  z-index: 999999; /* Asegúrate de que el modal esté en la parte superior */
+}

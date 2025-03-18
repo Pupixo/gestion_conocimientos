@@ -1,0 +1,91 @@
+<form    [formGroup]="params_tbl_tema" class="text-sm space-y-5 tbl-contenidos-modal" (ngSubmit)="GuardarDataTemas()" ngNativeValidate>
+
+    <div class="mb-5">
+        <label for="txtTituloTemas">Titulo de tema</label>
+        <input id="txtTituloTemas" formControlName="titulo_tema" type="text" placeholder="Ingresar titulo del Tema" class="form-input"  />
+    </div>
+
+    <div class="mb-5">
+        <label for="txtResumenTema">Resumen de tema</label>
+        <textarea id="txtResumenTema"   formControlName="resumen_tema" rows="2" class="form-textarea"  placeholder="Ingresar el resumen del Curso" ></textarea>
+
+
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Subir video <code class="text-danger">esto es opcional</code> </label>
+                <button type="button" (click)="verArchivo('video_tema')" class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                    <icon-eye class="h-5 w-5" />
+                </button>
+            </div>
+            <input id="ctnFileLogo"  (change)="subirArchivo($event,'vid','video_tema')" formControlName="video_tema" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />            
+        </div>
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Subir foto de fondo</label>
+                <button type="button" (click)="verArchivo('img_fondo')" class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                    <icon-eye class="h-5 w-5" />
+                </button>
+            </div>
+            <input id="ctnFilePortada"  (change)="subirArchivo($event,'img','img_fondo')"  formControlName="img_fondo" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />   
+        </div>
+    </div>
+
+
+
+    <div class="mb-5">
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Archivos del Contenido</label>
+            </div>
+            <input  (change)="onFileChange($event)" #fileInputMultiple  multiple id="ctnFileLogo" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />            
+        </div>
+    </div>
+
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Lista de archivos que se subiran </label>
+            </div>
+            <ul class="mt-2 space-y-1 text-sm text-gray-700">
+                <li  class="gap-4 flex items-center space-x-2" *ngFor="let file of files; let i = index">
+                        {{ file.name  }}
+                        <button type="button" class="btn btn-danger btn-sm" (click)="EliminarArchivoAntesDeSubir(i)">eliminar archivo</button>
+                </li>
+            </ul>
+        </div>      
+        
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Lista de archivos subidos al sitema</label>
+            </div>
+       
+            <ul class="mt-2 space-y-1 text-sm text-gray-700">
+                <li *ngFor="let file of fileEdit" class="gap-4 flex items-center space-x-2">
+                    <span>{{ getFileNameUrl(file.url) }}</span>
+                    <a [href]="file.url" target="_blank" rel="noopener noreferrer">
+                        <button type="button" class="p-0 btn btn-danger btn-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </button>
+                    </a>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="EliminarArchivo(file.id_archivo_contenido)">eliminar archivo</button>
+                </li>
+            </ul>
+
+
+        </div>            
+    </div>
+
+
+        <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ params_tbl_tema.controls['id'].value ? 'Actualizar' : 'Crear' }} Contenido</button>
+</form>
+
+

@@ -1,0 +1,57 @@
+<div>
+    <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">Analisis de Excels en Zip</a>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <span>Reporte C7</span>
+        </li>
+    </ul>
+    
+
+    <div class="space-y-8 pt-5">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-1">
+            <!-- Single File -->
+            <div class="panel">
+                <div class="mb-5 flex items-center justify-between">
+                    <h5 class="text-lg font-semibold dark:text-white-light">Gestion Reporte C7</h5>
+                </div>
+
+                <div class="mb-2.5">Escoga el rango que del <code class="text-danger">periodo</code>.</div>
+                <div class="mb-5">
+                    <form [formGroup]="formulario">
+                        <ng2-flatpickr [config]="rangeCalendar" formControlName="fechas_rango" addClass="form-input"></ng2-flatpickr>
+                    </form>
+                </div>
+
+                
+                <div>
+                   <!-- <label for="ctnFile">Example file input</label>--> 
+                    <form class="space-y-5" ngNativeValidate [formGroup]="uploadZip" (ngSubmit)="uploadData()">
+                            <label for="file">Escoger el archivo zip de excels para organización de datos</label>
+                            <input (change)="subirArchivo($event)"
+                                id="ctnFile"
+                                type="file"
+                                formControlName="file" 
+                                class="rtl:file-ml-5 form-input p-0 file:border-0 file:bg-primary/90 file:px-4 file:py-2 file:font-semibold file:text-white  file:hover:bg-primary ltr:file:mr-5"
+                            />
+
+                            <label for="ctnfile_txt">Escoger el archivo zip de txts para organización de datos</label>
+                            <input (change)="subirArchivoZiptxt($event)"
+                                id="ctnfile_txt"
+                                type="file"
+                                formControlName="file_txt" 
+                                class="rtl:file-ml-5 form-input p-0 file:border-0 file:bg-primary/90 file:px-4 file:py-2 file:font-semibold file:text-white  file:hover:bg-primary ltr:file:mr-5"
+                            />
+
+                            <div class="flex items-center gap-2">
+                                <button type="submit" class="btn btn-warning !mt-6">Subir</button>
+                            </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+</div>

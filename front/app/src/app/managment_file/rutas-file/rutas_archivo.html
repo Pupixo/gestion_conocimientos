@@ -1,0 +1,73 @@
+<div>
+    <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">Gestor de Archivos</a>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <span>Ruta de Archivos</span>
+        </li>
+    </ul>
+    <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-1">
+        <div class="panel">
+            <div class="mb-5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <h5 class="text-lg font-semibold dark:text-white-light"> Lista de archivos </h5>
+                    <button type="button" (click)="CrearCarpetaEnRaiz('','')" style="padding: 1px !important;border: white !important;" class="btn btn-outline-warning"> <icon-cloud-folder class="h-6 w-6" /></button>
+                    <button type="button" (click)="SubirArchivoEnRaiz('','')" style="padding: 1px !important;border: white !important;" class="btn btn-outline-warning"> <icon-cloud-file class="h-6 w-6" /></button>
+                </div>           
+            </div>
+            <div class="mb-5">
+                <ul class="font-semibold">
+                    <ng-container *ngFor="let item of data">
+                        <ng-container *ngFor="let subfolder of item.sub_carpetas">
+                            <!--sub_carpetas de lugar inicial-->
+                            <li class="py-[5px]">
+                                <div class="flex items-center">
+                                    <button  type="button" (click)="toggleTreeview(subfolder,item.ruta +'$'+subfolder)">
+                                        <icon-caret-down [class]="'inline w-5 h-5 text-primary relative ' + [treeview1.includes(subfolder) ? 'rotate-180' : '']" />
+                                        <icon-folder class="inline text-primary ml-2" />
+                                        {{ subfolder }}
+                                    </button>
+                                    <button type="button" (click)="CrearCarpetaEnRaiz(subfolder,item.ruta +'$'+subfolder)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-warning ">
+                                         <icon-cloud-folder class="h-4 w-4" />
+                                    </button>
+                                    <button type="button" (click)="SubirArchivoEnRaiz(subfolder,item.ruta +'$'+subfolder)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-warning "> 
+                                        <icon-cloud-file class="h-4 w-4" />
+                                    </button>
+                                    <button type="button" (click)="EliminarCarpeta(subfolder,item.ruta +'$'+subfolder)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-danger"> 
+                                        <icon-trash-lines class="h-4 w-4" />
+                                    </button>
+                                </div>
+                          
+                                <div [@slideDownUp]="!treeview1.includes(subfolder)" clisExpandedass="accordion-content">
+                                    <ul class="ltr:pl-14 rtl:pr-14">
+                                        <ng-container *ngIf="subfolder.length > 0">
+                                            <app-sub-carpetas-arbol [subCarpetas]="item.ruta +'$'+subfolder"></app-sub-carpetas-arbol>
+                                        </ng-container>
+                                    </ul>
+                                </div> 
+                            </li>
+                        </ng-container>
+                        <!-- Archivos -->
+                        <ng-container *ngFor="let archivo of item.archivos">
+                            <li class="py-[5px] ltr:pl-7 rtl:pr-7 flex items-center gap-1">
+                                <icon-txt-file class="inline h-4.5 w-4.5 text-primary ltr:mr-2 rtl:ml-2" />
+                                {{ archivo }}
+                                <button type="button" (click)="ReemplazarArchivo(archivo,item.ruta +'$'+archivo)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-primary btn-sm">
+                                  <icon-cloud-download class="h-5 w-5" />
+                                </button>
+                                <button type="button" (click)="DescargarArchivo(archivo,item.ruta +'$'+archivo)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-info btn-sm">
+                                  <icon-cloud-upload class="h-5 w-5" />
+                                </button>
+                                <button type="button" (click)="EliminarArchivo(archivo,item.ruta +'$'+archivo)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-danger btn-sm">
+                                    <icon-trash-lines class="h-5 w-5" />
+                                </button>
+                            </li>
+                        </ng-container>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

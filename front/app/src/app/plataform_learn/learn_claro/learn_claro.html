@@ -1,0 +1,135 @@
+<div>
+    <!-- <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">    {{ 'learn_platform' | translate }}</a>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <span>{{ 'learn_claro' | translate }}</span>
+        </li>
+    </ul> -->
+
+
+    <div class="space-y-8 pt-5 max-w-full">
+        <div class="panel" style="padding: 0px !important;">          
+            <div class="swiper mx-auto mb-5 max-w-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="image-wrapper">
+                            <img [src]="'/assets/images/photodune-4161018-group-of-students-m.jpg'" class="max-h-80 w-full object-cover" alt="" />
+                            <div class="absolute top-1/4 z-[999] text-white ltr:left-12 rtl:right-12">
+                                <div class="text-base font-bold sm:text-3xl">Aprende con Claro</div>
+                                <div class="mt-1 hidden w-4/5 text-base font-medium sm:mt-5 sm:block">
+                                    Conoces los comunicados del dia de hoy 
+                                </div>
+                                <button type="button" class="btn btn-primary mt-4">Chequea más</button>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>       
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-1">
+
+        <div class="panel">
+            <h5 class="mb-5 text-lg font-semibold dark:text-white-light">Listado de Cursos</h5>
+            <div class="mb-5 flex items-center justify-center gap-6">
+
+                <ng-container  *ngFor="let course of courseList; let i = index" >
+
+                    <div 
+                        class="w-full max-w-xs overflow-hidden rounded-md 
+                        shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] 
+                        dark:shadow-none"
+                    >
+                            <div class="bg-white dark:bg-[#191e3a] background-div  movement"  >
+                                    <img 
+                                        [src]="course.cursos.img_fondo"
+                                        alt="Angular"
+                                        style="width: 100%; height: 150px; object-fit: cover;"
+                                    >
+                            </div>
+                            <div class="px-4 py-1">
+                                <h6 class="truncate  break-words text-[20px] py-3 font-bold text-[#3b3f5c] dark:text-white-light"> {{ course.cursos.nom_curso }} </h6>
+                                <div  class="relative mt-1 flex justify-between " >
+                                    <div class="flex items-center font-semibold">
+                                        <div class="inline-block h-9 w-9 shrink-0 overflow-hidden rounded-full ltr:mr-2 rtl:ml-2.5">
+                                            <span class="flex h-full w-full items-center justify-center bg-[#515365] text-[#e0e6ed]">
+                                                <span>{{ getInitials(course.cursos.docente_data[0].first_name) }}{{ getInitials(course.cursos.docente_data[0].last_name) }}</span>
+                                            </span>
+                                        </div>
+                                        <div class="text-[#515365] dark:text-white-dark">{{ course.cursos.docente_data[0].first_name  }}  {{  course.cursos.docente_data[0].last_name }}</div>
+                                    </div>
+                                    <div class="flex font-semibold">
+                                        <!-- <div class="flex items-center text-danger ltr:mr-3 rtl:ml-3">
+                                            <icon-heart style="color: red;" class="h-4 w-4 ltr:mr-1 rtl:ml-1" />
+                                            51
+                                        </div>
+                                        <div class="flex items-center text-info">
+                                            <icon-eye class="h-4 w-4 ltr:mr-1 rtl:ml-1" />
+                                            250
+                                        </div> -->
+                                        <div class="flex items-center justify-center gap-1 text-[#e2a03f]">
+                                            <ng-container *ngFor="let _ of createRange(course.feedback_puntaje)">
+                                                <icon-star class="h-4.5 w-4.5 fill-warning" />
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div  class="relative mt-1 flex justify-between " >
+                                    <div class="flex items-center font-semibold">
+                                        <div class="px-4 py-1">
+                                            <p class="text-center text-xs font-bold text-primary">Creado el {{   moment( course.creado).format('MMMM Do YYYY, h:mm:ss a')    }} </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex font-semibold">
+                                        <div class="flex items-center justify-center gap-1 text-[#e2a03f]">
+                                            <!-- <ng-container *ngFor="let _ of createRange(course.feedback_puntaje)">
+                                                <icon-star class="h-4.5 w-4.5 fill-warning" />
+                                            </ng-container> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative mt-2 flex justify-between pt-2 before:absolute before:inset-x-0 before:top-0 before:mx-auto before:h-[2px] before:w-[100%] before:bg-[#e0e6ed] dark:before:bg-[#1b2e4b]" >
+                            </div>
+                            <div class="px-4 py-2">
+                                <div  class="relative  flex justify-between " >
+                                    <!--<div class="flex font-semibold">
+                                            <div class="flex items-center text-primary">
+                                                <icon-clock class="h-4 w-4 ltr:mr-1 rtl:ml-1" /> 
+                                                
+                                                horas de video
+                                            </div>
+                                        </div> -->
+                                    <div class="flex font-semibold">
+                                        <div class="flex items-center text-primary ltr:mr-3 rtl:ml-3">
+                                            <icon-menu-documentation class="h-4 w-4 ltr:mr-1 rtl:ml-1" />
+                                            {{ course.cursos.contenidos_data.length }} lecciones
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="border-border-white-dark/20 border-t bg-dark-light p-3 dark:border-[#0e1726] dark:bg-[#191e3a]">
+                   
+                                <div class="mt-2 flex justify-center">
+                                    <a href="javascript:;" class="btn btn-primary"  (click)="goTolearn(course.id)">Ver curso y documentos</a>
+                                </div>
+                            </div>
+                    </div>
+                </ng-container>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,128 @@
+<form [formGroup]="params_examen" class="text-sm space-y-5" (ngSubmit)="GuardarDataExamenCurso()" ngNativeValidate>
+
+    <div class="mb-5">
+        <label for="tituloExamen">Titulo del Examen</label>
+        <input id="tituloExamen" type="text" placeholder="Ingresar Nombre del Examen" class="form-input" formControlName="titulo_examen" />
+    </div>
+
+    <div class="mb-5">
+        <label for="tiempoExamen">Tiempo del Examen</label>
+        <input id="tiempoExamen"  formControlName="tiempo_examen" type="text" placeholder="Hora:Minutos" class="form-input" [textMask]="{mask: tiempomascara}" />
+    </div>
+
+    <div  class="mb-5">
+        <label for="txtobjetivoExamen">Objetivo del Examen</label>
+        <textarea id="txtobjetivoExamen"  formControlName="objetivo_examen" rows="3" class="form-textarea" placeholder="Ingresar datos Acerca de este examen y sus secciones" ></textarea>
+    </div>
+
+    <div class="mb-5">
+
+        <div class="flex items-center space-x-2">
+            <label for="ctnFileLogo">Subir imagen del Examen <code class="text-danger">esto es opcional</code> </label>
+            <button type="button" (click)="verArchivo('imagen_examen')" class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                <icon-eye class="h-5 w-5" />
+            </button>
+        </div>
+        <input id="ctnFilePortada"  (change)="subirArchivo($event,'img','imagen_examen')"  formControlName="imagen_examen" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />   
+  
+    </div>
+
+    <ng-container *ngIf="params_examen.get('id')!.value > 0">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+                <div class="flex items-center space-x-2">
+                    <label for="listapreguntasExamen">Lista de preguntas del Examen</label>
+                    <button  (click)="ModalPreguntasExamenCursoOpen()"  type="button" class="btn  btn-outline-info btn-sm">
+                      <icon-plus class="h-5 w-5" />
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <br>
+                <code class="text-danger">* debe como minimo haber 5 preguntas para que aparezca el examen en el curso</code> 
+            </div>
+            <div class="flex items-center space-x-2">
+                <br>
+                <code class="text-primary">* Las opciones con fondo azul son las correctas de cada pregunta </code> 
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <div class="datatable">
+                <ng-datatable
+                    [rows]="PreguntasExamenCursoList"
+                    [columns]="columnasPreguntasExamen"
+                    [columnFilter]="true"
+                    skin="whitespace-nowrap table-hover"
+                    firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                    previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                >
+
+                
+                <ng-template slot="pregunta" let-value="data">
+                    <div class="whitespace-normal break-words font-semibold w-28 ">{{ value.pregunta }}</div>
+                </ng-template>
+                       
+
+                <ng-template slot="opcion1" let-value="data">
+                    <div [ngStyle]="{'background-color': value.color_correcto1}" class=" whitespace-normal break-words font-semibold w-28 ">{{ value.opcion1 }}</div>
+                </ng-template>
+                       
+                <ng-template slot="opcion2" let-value="data">
+                    <div  [ngStyle]="{'background-color': value.color_correcto2}"  class=" whitespace-normal break-words font-semibold w-28 ">{{ value.opcion2 }}</div>
+                </ng-template>
+                       
+                <ng-template slot="opcion3" let-value="data">
+                    <div [ngStyle]="{'background-color': value.color_correcto3}"  class="whitespace-normal break-words font-semibold w-28 " >{{ value.opcion3 }}</div>
+                </ng-template>
+
+                <ng-template slot="opcion4" let-value="data">
+                    <div [ngStyle]="{'background-color': value.color_correcto4}"  class="whitespace-normal break-words font-semibold w-28 ">{{ value.opcion4 }}</div>
+                </ng-template>
+                
+                <ng-template slot="opcion5" let-value="data">
+                    <div [ngStyle]="{'background-color': value.color_correcto5}"  class="whitespace-normal break-words font-semibold w-28 ">{{ value.opcion5 }}</div>
+                </ng-template>
+
+
+                <ng-template slot="action"  let-value="data" >
+                    <div class="flex items-center w-5">
+                        <div>
+                            <button type="button" class="ltr:mr-2 rtl:ml-2" ngxTippy="Editar" (click)="ModalPreguntasExamenCursoOpen(value)">
+                                <icon-pencil />
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-sm btn-outline-danger" (click)="EliminarPreguntaExamenCurso(value)">
+                                    <icon-trash />
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+
+
+                </ng-datatable>
+            </div>
+        </div>
+
+    </ng-container>
+    <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ params_examen.controls['id'].value ? 'Actualizar' : 'Crear' }} Examen</button>
+</form>
+
+
+
+
+<!-- Modal --> 
+<modal #ModalPreguntas class="modal-top extra-large-modal animate animate-fade-in-up"   [closeOnOutsideClick]="false">
+    <ng-template #modalHeader>
+        <div class="!font-medium">{{ params_preguntas.controls['id'].value ? 'Editar' : 'Registrar' }} Pregunta de Examen  </div>    
+    </ng-template>
+    <ng-template #modalBody>
+        <app-modals_preguntas_examen_curso> </app-modals_preguntas_examen_curso>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="ModalPreguntasExamenCerrar()" class="btn btn-outline-danger">Cerrar</button>
+    </ng-template>
+</modal>

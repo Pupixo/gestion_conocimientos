@@ -1,0 +1,832 @@
+<div>
+  
+
+    <div class="space-y-8 pt-5">
+        <!-- default -->
+        <div class="panel bg-indigo-800">
+            <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-1">
+
+            </div>
+            <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-1">
+               
+            
+
+                <div class="mb-5 flex items-center justify-between">
+
+                    <div>
+                        <div
+                            class="flex h-16 w-16 flex-col justify-center rounded-full border border-[#e0e6ed] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] dark:border-[#1b2e4b] sm:h-[100px] sm:w-[100px]"
+                        >
+                            <h1 class="text-center text-xl text-white sm:text-3xl">{{ hoursLeft }}</h1>
+                        </div>
+                        <h4 class="mt-4 text-center text-[15px] font-semibold text-[#cacff5] dark:text-white-dark">Hor</h4>
+                    </div>
+                  
+                    <div>
+                        <div
+                            class="flex h-16 w-16 flex-col justify-center rounded-full border border-[#e0e6ed] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] dark:border-[#1b2e4b] sm:h-[100px] sm:w-[100px]"
+                        >
+                            <h1 class="text-center text-xl text-white sm:text-3xl">{{ minutesLeft }}</h1>
+                        </div>
+                        <h4 class="mt-4 text-center text-[15px] font-semibold text-[#cacff5] dark:text-white-dark">Min</h4>
+                    </div>
+
+                    <div>
+                        <div
+                            class="flex h-16 w-16 flex-col justify-center rounded-full border border-[#e0e6ed] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] dark:border-[#1b2e4b] sm:h-[100px] sm:w-[100px]"
+                        >
+                            <h1 class="text-center text-xl text-white  sm:text-3xl">{{ secondsLeft }}</h1>
+                        </div>
+                        <h4 class="mt-4 text-center text-[15px] font-semibold text-[#d1d7fd] dark:text-white-dark">Sec</h4>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <div  class=" gap-8 flex flex-row justify-around" >
+
+                        <div class="mb-5 flex items-center justify-center">
+                            <ul class="mb-5 grid grid-cols-1 text-center">
+
+                                <ng-container *ngFor="let preguntas of quizList[0].preguntas_data; index as iter">
+
+
+                                        <li>
+                                            <a
+                                                href="javascript:;"
+                                                class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                                [ngClass]="{'!bg-primary text-white': activeTab === (iter+1)}"
+                                                (click)="activeTab = (iter+1)"
+                                                >Pregunta {{iter +1 }}</a
+                                            >
+                                        </li>
+                                </ng-container>
+
+
+                                <!-- <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 2}"
+                                        (click)="activeTab = 2"
+                                        >Pregunta 2</a
+                                    >
+                                </li>
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 3}"
+                                        (click)="activeTab = 3"
+                                        >Pregunta 3</a
+                                    >
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 4}"
+                                        (click)="activeTab = 4"
+                                        >Pregunta 4</a
+                                    >
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 5}"
+                                        (click)="activeTab = 5"
+                                        >Pregunta 5</a
+                                    >
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 6}"
+                                        (click)="activeTab = 6"
+                                        >Pregunta 6</a
+                                    >
+                                </li>
+
+
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 7}"
+                                        (click)="activeTab = 7"
+                                        >Pregunta 7</a
+                                    >
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 8}"
+                                        (click)="activeTab = 8"
+                                        >Pregunta 8</a
+                                    >
+                                </li>
+
+                                
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 9}"
+                                        (click)="activeTab = 9"
+                                        >Pregunta 9</a
+                                    >
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                        [ngClass]="{'!bg-primary text-white': activeTab === 10}"
+                                        (click)="activeTab = 10"
+                                        >Pregunta 10</a
+                                    >
+                                </li> -->
+
+
+                            </ul>
+                        </div>
+
+                        <div class="mb-5 flex flex-col items-center justify-center">
+                            <div>
+
+                                <ng-container *ngFor="let preguntas of quizList[0].preguntas_data; index as iter">
+
+                                        <ng-container *ngIf="activeTab ===  (iter+1)">
+                                            <div class="mb-5">
+                                                <div class="grid grid-cols-1 gap-4">
+                                                    <div class="flex flex-col items-center justify-center h-full">
+                                                        <p class="mb-5 text-white">{{preguntas.pregunta}}</p>
+                                                        <div class="space-y-2">
+
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="checkbox" class="peer form-checkbox" checked />
+                                                                    <span class="peer-checked:text-primary">{{preguntas.opcion1}}</span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="checkbox" class="peer form-checkbox text-success" />
+                                                                    <span class="peer-checked:text-success">{{preguntas.opcion2}}</span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="checkbox" class="peer form-checkbox text-secondary" />
+                                                                    <span class="peer-checked:text-secondary">{{preguntas.opcion3}}</span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="checkbox" class="peer form-checkbox text-danger" />
+                                                                    <span class="peer-checked:text-danger">{{preguntas.opcion4}}</span>
+                                                                </label>
+                                                            </div>
+                                                            <!-- <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="checkbox" class="peer form-checkbox text-warning" />
+                                                                    <span class="peer-checked:text-warning">Warning</span>
+                                                                </label>
+                                                            </div> -->
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="checkbox" class="peer form-checkbox text-info" />
+                                                                    <span class="peer-checked:text-info">{{preguntas.opcion5}}</span>
+                                                                </label>
+                                                            </div>
+                                                            <!-- <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="checkbox" class="peer form-checkbox text-dark" />
+                                                                    <span class="peer-checked:text-dark">Dark</span>
+                                                                </label>
+                                                            </div> -->
+
+
+<!-- 
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                                    <span class="peer-checked:text-primary"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                                    <span class="peer-checked:text-success"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                                    <span class="peer-checked:text-secondary"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                                    <span class="peer-checked:text-danger"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                                    <span class="peer-checked:text-warning"></span>
+                                                                </label>
+                                                            </div> -->
+                                                            <!-- <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                                    <span class="peer-checked:text-info">Info</span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label class="inline-flex">
+                                                                    <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                                    <span class="peer-checked:text-dark">Dark</span>
+                                                                </label>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+
+                                    <!-- <ng-container *ngIf="activeTab === 2">
+                        
+                                    
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 2</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </ng-container>
+
+                                <ng-container *ngIf="activeTab === 3">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 3</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container>
+
+                                <ng-container *ngIf="activeTab === 4">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 4</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container>
+
+                                <ng-container *ngIf="activeTab === 5">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 5</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container>
+
+
+                                <ng-container *ngIf="activeTab === 6">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 6</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container>
+
+
+                                <ng-container *ngIf="activeTab === 7">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 7</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container>
+
+                                <ng-container *ngIf="activeTab === 8">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 8</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container>
+
+                                
+                                <ng-container *ngIf="activeTab === 9">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 9</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container>
+
+                                
+                                <ng-container *ngIf="activeTab === 10">
+                                    
+                                
+                                    <div class="grid grid-cols-1 gap-4">
+                            
+
+                                        <div class="flex flex-col items-center justify-center h-full">
+
+                                            <p class="mb-5 text-white">aqui ponen la pregunta 10</p>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio" checked />
+                                                        <span class="peer-checked:text-primary">Primary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-success" />
+                                                        <span class="peer-checked:text-success">Success</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-secondary" />
+                                                        <span class="peer-checked:text-secondary">Secondary</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-danger" />
+                                                        <span class="peer-checked:text-danger">Danger</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-warning" />
+                                                        <span class="peer-checked:text-warning">Warning</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-info" />
+                                                        <span class="peer-checked:text-info">Info</span>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="inline-flex">
+                                                        <input type="radio" name="default_text_color" class="peer form-radio text-dark" />
+                                                        <span class="peer-checked:text-dark">Dark</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </ng-container> -->
+
+
+                                </ng-container>
+
+                            </div>
+
+                            <div class="flex justify-between">
+
+                                <button type="button" class="btn btn-outline-info" [disabled]="activeTab === 1" (click)="activeTab = activeTab - 1">Atras</button>
+                                <button type="button" class="btn btn-outline-info" [disabled]="activeTab === quizList[0].preguntas_data.length" (click)="activeTab = activeTab + 1">Siguiente</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

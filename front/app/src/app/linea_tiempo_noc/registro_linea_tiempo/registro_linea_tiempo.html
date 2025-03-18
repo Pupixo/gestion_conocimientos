@@ -1,0 +1,111 @@
+<div>
+    <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">Registro de Linea de tiempo</a>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <span>Linea de Tiempo</span>
+        </li>
+    </ul>
+    
+    <div class="grid grid-cols-1 gap-4">
+
+            <div class="col-span-1 ...">
+                <div class="flex items-center gap-2">
+                    <button type="submit" class="btn btn-warning !mt-6 w-full" (click)="ModalRegistroEdicionLineaTiempo()">Registrar incidencia</button>
+                </div>
+            </div>
+        
+            <div class="col-span-1 ...">
+                <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-1">
+                    <div class="panel lg:row-span-2">
+                        <div class="mb-5 space-y-5">
+                            <div>
+                                <form class="mx-auto mb-5 w-full sm:w-1/2">
+                                    <div class="relative">
+                                        <input
+                                            type="text"
+                                            placeholder="Busqueda de Incidencia por código..."
+                                            class="form-input h-11 rounded-full bg-white shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)] placeholder:tracking-wider ltr:pr-11 rtl:pl-11"
+                                            [(ngModel)]="search"
+                                            (ngModelChange)="searchResults()"
+                                            name="search"
+                                        />
+                                        <button
+                                            type="button"
+                                            class="btn btn-primary absolute inset-y-0 m-auto flex h-9 w-9 items-center justify-center rounded-full p-0 ltr:right-1 rtl:left-1"
+                                        >
+                                            <icon-search class="mx-auto" />
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-1 ...">
+                <div class="grid grid-cols-1 gap-6 pt-5 xl:grid-cols-1">
+                    <!-- Basic -->
+                    <div class="panel">
+                        <div class="mb-5 flex items-center justify-between">
+                            <h5 class="text-lg font-semibold dark:text-white-light">Incidencias ocurridas</h5>
+                        </div>
+                        <div class="mb-5">
+                            <div class="mx-auto max-w-[900px]">
+                                <ng-container *ngFor="let item of filteredItem; index as i">
+                                    <div
+                                        class="flex min-w-[625px] items-center justify-between rounded-xl
+                                        bg-white p-3 font-semibold
+                                        text-gray-500 shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)] 
+                                        transition-all duration-300 hover:scale-[1.01] 
+                                        hover:text-primary dark:bg-[#1b2e4b]"
+                                    >
+                                        <div>{{ item.codigo_ticket }}</div>
+                                        <div>{{ item.fecha_incidencia }}</div>
+                                        <div class="cursor-pointer">
+                                            <button type="button" class="ltr:mr-2 rtl:ml-2" ngxTippy="Editar" (click)="ModalRegistroEdicionLineaTiempo(item)">
+                                                <icon-horizontal-dots   class="h-6 w-6 opacity-70" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+      </div>
+</div>
+
+
+   <!-- Trigger 
+          [ngClass]="store.rtlClass === 'rtl' ? 'animate-rotate-in-right' : 'animate-rotate-in-left'"
+   -->
+
+   <!-- Modal -->
+   <modal
+       #ModalLineaTiempo
+       class="modal-top extra-large-modal  animate"
+       [ngClass]="'animate-rotate-in-right'"
+       [closeOnOutsideClick]="false"
+   >
+
+    <ng-template #modalHeader>
+        <div>
+            {{ params.get('id')!.value ? 'Editar' : 'Registrar' }} Incidencia
+        </div>
+    </ng-template>
+    <ng-template #modalBody>
+        <app-modal_linea_tiempo> </app-modal_linea_tiempo>
+    </ng-template>
+    <ng-template #modalFooter>
+        <!-- (click)="ModalLineaTiempo.close()"  -->
+        <button type="button" class="btn btn-outline-danger" (click)="CerrarModalLineaTiempo()">Cancelar</button>
+        <!-- <button type="button" class="btn btn-primary ltr:ml-4 rtl:mr-4" (click)="CerrarModal()">Guardar</button> -->
+        <!-- (click)="ModalLineaTiempo.close()" -->
+    </ng-template>
+    
+   </modal>

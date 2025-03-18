@@ -1,0 +1,160 @@
+<div>
+  
+
+    <div class="space-y-8 pt-5">
+        <!-- default -->
+        <div class="panel bg-red-700" #examPanel>
+            <div class="flex justify-between p-4">
+                <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-1 text-white text-3xl"> Examen Final </div>
+                <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-1 text-white">
+                    <button  class="btn btn-outline-white" (click)="toggleFullScreen()"> Expandir </button>                
+                </div>
+            </div>
+            <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-1">
+                <div class="mb-5 flex items-center justify-between">
+                    <div>
+                        <div
+                            class="flex h-16 w-16 flex-col justify-center rounded-full border border-[#e0e6ed] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] dark:border-[#1b2e4b] sm:h-[100px] sm:w-[100px]"
+                        >
+                            <h1 class="text-center text-xl text-white	 sm:text-3xl">{{ hoursLeft }}</h1>
+                        </div>
+                        <h4 class="mt-4 text-center text-[15px] font-semibold text-[#cacff5] dark:text-white-dark">Hora</h4>
+                    </div>
+                    <div>
+                        <div
+                            class="flex h-16 w-16 flex-col justify-center rounded-full border border-[#e0e6ed] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] dark:border-[#1b2e4b] sm:h-[100px] sm:w-[100px]"
+                        >
+                            <h1 class="text-center text-xl text-white	 sm:text-3xl">{{ minutesLeft }}</h1>
+                        </div>
+                        <h4 class="mt-4 text-center text-[15px] font-semibold text-[#cacff5] dark:text-white-dark">Minutos</h4>
+                    </div>
+                    <div>
+                        <div
+                            class="flex h-16 w-16 flex-col justify-center rounded-full border border-[#e0e6ed] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] dark:border-[#1b2e4b] sm:h-[100px] sm:w-[100px]"
+                        >
+                            <h1 class="text-center text-xl text-white	 sm:text-3xl">{{ secondsLeft }}</h1>
+                        </div>
+                        <h4 class="mt-4 text-center text-[15px] font-semibold text-[#d1d7fd] dark:text-white-dark">Segundos</h4>
+                    </div>
+                </div>
+
+                <div class="grid grid-rows-3 grid-flow-col gap-4">
+                    <div class="row-span-3  ">
+                        <div class="mb-5 flex items-center justify-center">
+                            <ul class="mb-5 grid grid-cols-1 text-center">
+                                <ng-container *ngFor="let preguntas of PreguntasDatas; index as iter">
+                                        <li class="mb-1">
+                                            <a
+                                                href="javascript:;"
+                                                class="truncate block rounded-full bg-[#f3f2ee] p-2.5 dark:bg-[#bebae7]"
+                                                [ngClass]="{'!bg-primary text-white': activeTab === (iter+1)}"
+                                                (click)="activeTab = (iter+1)"
+                                            >{{iter +1 }} Pregunta</a>
+                                        </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                    <div class="row-span-2 col-span-2">
+                        <div class="mb-5 flex flex-col items-center justify-center">
+
+                            <ng-container *ngFor="let pregunta_fila of PreguntasDatas; index as iter">
+                                <ng-container *ngIf="activeTab === (iter + 1)">
+                                  <div class="mb-5">
+                                    <div class="grid grid-cols-1 gap-4">
+                                      <div class="flex flex-col items-center justify-center h-full">
+                                        <div class="space-y-2 w-9/12">
+                                          <div>
+                                            <div class="mb-5 text-white select-none">{{pregunta_fila.pregunta}}</div>
+                                          </div>
+                                        </div>
+                                        <div class="space-y-2">
+                                          <div>
+                                            <label class="inline-flex pointer-events-auto">
+                                              <input type="checkbox" class="peer_{{iter}} form-checkbox" 
+                                                [checked]="checkboxStates[iter].opciones[0]"
+                                                (change)="onCheckboxChange(iter, 1, $event)" />
+                                              <span class="peer_{{iter}}-checked:text-black select-none text-white ">{{pregunta_fila.opcion1}}</span>
+                                            </label>
+                                          </div>
+                                          <div>
+                                            <label class="inline-flex pointer-events-auto">
+                                              <input type="checkbox" class="peer_{{iter}} form-checkbox text-success"
+                                                [checked]="checkboxStates[iter].opciones[1]"
+                                                (change)="onCheckboxChange(iter, 2, $event)" />
+                                              <span class="peer_{{iter}}-checked:text-black select-none text-white ">{{pregunta_fila.opcion2}}</span>
+                                            </label>
+                                          </div>
+                                          <div>
+                                            <label class="inline-flex pointer-events-auto">
+                                              <input type="checkbox" class="peer_{{iter}} form-checkbox text-secondary"
+                                                [checked]="checkboxStates[iter].opciones[2]"
+                                                (change)="onCheckboxChange(iter, 3, $event)" />
+                                              <span class="peer_{{iter}}-checked:text-black select-none text-white ">{{pregunta_fila.opcion3}}</span>
+                                            </label>
+                                          </div>
+                                          <div>
+                                            <label class="inline-flex pointer-events-auto">
+                                              <input type="checkbox" class="peer_{{iter}} form-checkbox text-danger"
+                                                [checked]="checkboxStates[iter].opciones[3]"
+                                                (change)="onCheckboxChange(iter, 4, $event)" />
+                                              <span class="peer_{{iter}}-checked:text-black select-none text-white ">{{pregunta_fila.opcion4}}</span>
+                                            </label>
+                                          </div>
+                                          <div>
+                                            <label class="inline-flex pointer-events-auto">
+                                              <input type="checkbox" class="peer_{{iter}} form-checkbox text-info"
+                                                [checked]="checkboxStates[iter].opciones[4]"
+                                                (change)="onCheckboxChange(iter, 5, $event)" />
+                                              <span class="peer_{{iter}}-checked:text-black select-none text-white ">{{pregunta_fila.opcion5}}</span>
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </ng-container>
+                              </ng-container>
+                                           
+                        </div>
+                    </div> 
+                   
+                </div>
+
+
+                <div class="grid grid-rows-1 grid-flow-col gap-4">
+                    <div class="mb-5">
+                        <div class="gap-8 flex flex-row justify-around" >
+                            <div class="flex justify-between gap-4">
+                                <button type="button" class="btn btn-dark" (click)="GuardarRespuesta()"  [disabled]="activeTab !== PreguntasDatas.length">
+                                    Guardar respuestas
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="grid grid-rows-1 grid-flow-col gap-4">
+                    <div class="mb-5">
+                        <div class="gap-8 flex flex-row justify-around" >
+                            <div class="flex justify-between gap-4">
+                                <button type="button" class="btn btn-outline-primary" [disabled]="activeTab === 1" (click)="activeTab = activeTab - 1">Atras</button>
+                                <button type="button" class="btn btn-outline-primary" [disabled]="activeTab === PreguntasDatas.length" (click)="activeTab = activeTab + 1">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

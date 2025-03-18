@@ -1,0 +1,223 @@
+
+    <div class="grid grid-cols-3 gap-4">
+        <h5 class="text-lg font-semibold dark:text-white-light">Datos principales de la incidencia</h5>
+
+        <div class="col-span-3 ...">
+            <form  [formGroup]="parametros_modal" class="text-sm space-y-5 tbl-contenidos-modal" (ngSubmit)="GuardarDatos()" ngNativeValidate>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                    <div class="mb-5">
+                        <div class="flex">
+                            <div
+                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                            >
+                            #ticket
+                            </div>
+                            <input type="text" formControlName="codigo_ticket" (input)="convertirAMayusculas()" placeholder="Código de Ticket" class="form-input ltr:rounded-l-none rtl:rounded-r-none" />
+                        </div> 
+                    </div>
+
+                    <div class="mb-5">
+                        <div class="flex">
+                            <div
+                                class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                            >
+                                <icon-calendar class="h-3 w-3" />
+                            </div>
+                            <ng2-flatpickr [config]="dateTime" formControlName="fecha_incidencia" addClass="form-input w-full"></ng2-flatpickr>
+                        </div> 
+                    </div>
+        
+                    <div class="mb-5">
+                        <div class="flex">
+                        <div
+                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b] whitespace-nowrap"
+                        >
+                            Titulo de incidencia
+                        </div>
+                        <textarea rows="2" formControlName="titulo_incidencia"  class="form-textarea ltr:rounded-l-none rtl:rounded-r-none"></textarea>
+                        </div>
+                    </div>
+        
+                    <div class="mb-5">
+                        <div class="flex">
+                            <div
+                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b] whitespace-nowrap"
+                            >
+                            Descripción de incidencia
+                            </div>
+                            <textarea rows="2" formControlName="descrip_incidencia"  class="form-textarea ltr:rounded-l-none rtl:rounded-r-none"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+        
+                <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ parametros_modal.get('id')!.value ? 'Actualizar' : 'Crear' }} Incidencia</button>
+            
+            </form>
+        </div>
+
+
+        <ng-container *ngIf="parametros_modal.get('id')!.value > 0">
+
+
+                <div class="col-span-3 ...">
+                    <div class="mb-5 flex items-center gap-2">
+                        <button type="submit" class="btn btn-warning !mt-6 w-full" (click)="ModalRegistroEdicionDetLineaTiempo()">
+                            Agregar evento de la incidencia
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-span-3 ..."  style="height: 1000px;overflow-y: scroll;">
+                    <!-- basic -->
+                    
+                    <div class="max-w-[500px] mx-auto">
+                        <ng-container *ngFor="let item of filteredItem; index as i">
+
+                            <div class="flex">
+                                <p class="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">16:00</p>
+                                <div    class="
+                                            relative 
+                                            before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 
+                                            before:border-info before:rounded-full
+    
+                                            after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 
+                                            after:border-info after:rounded-full    
+                                        "
+                                ></div>
+    
+                                <div class="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
+                                    <p class="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Server rebooted successfully</p>
+                                    <p class="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">8 hrs ago</p>
+                                </div>
+                            </div>
+
+                        </ng-container>
+
+                      
+
+<!-- 
+                        <div class="flex">
+                            <p class="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">10:00</p>
+                            <div
+                                class="
+                                relative
+                                before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-primary before:rounded-full
+                                after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-primary after:rounded-full
+                                "
+                            ></div>
+                            <div class="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
+                                <p class="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Updated Server Logs</p>
+                                <p class="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">25 mins ago</p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                        <p class="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">12:45</p>
+                        <div
+                            class="
+                            relative
+                            before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-secondary before:rounded-full
+                            after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-secondary after:rounded-full
+                            "
+                        ></div>
+                        <div class="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
+                            <p class="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Backup Files EOD</p>
+                            <p class="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">2 hrs ago</p>
+                        </div>
+                        </div>
+                        <div class="flex">
+                        <p class="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">14:00</p>
+                        <div
+                            class="
+                            relative
+                            before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-success before:rounded-full
+                            after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-success after:rounded-full
+                            "
+                        ></div>
+                        <div class="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
+                            <p class="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Send Mail to HR and Admin</p>
+                            <p class="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">4 hrs ago</p>
+                        </div>
+                        </div>
+                        <div class="flex">
+                        <p class="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">16:00</p>
+                        <div
+                            class="
+                            relative
+                            before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-danger before:rounded-full
+                            after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-danger after:rounded-full
+                            "
+                        ></div>
+                        <div class="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
+                            <p class="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Conference call with Marketing Manager.</p>
+                            <p class="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">6 hrs ago</p>
+                        </div>
+                        </div>
+
+                        <div class="flex">
+                            <p class="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">17:00</p>
+                            <div
+                                class="
+                                relative
+                                before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-warning before:rounded-full
+                                after:absolute after:left-1/2 after:-translate-x-1/2 after:top-[25px] after:-bottom-[15px] after:w-0 after:h-auto after:border-l-2 after:border-warning after:rounded-full
+                                "
+                            ></div>
+
+                            <div class="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
+                                <p class="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Collected documents from <a href="javascript:void(0);">Sara</a></p>
+                                <p class="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">9 hrs ago</p>
+                            </div>
+                        </div>
+
+
+                       
+
+                        <div class="flex">
+                            <p class="text-[#3b3f5c] dark:text-white-light min-w-[58px] max-w-[100px] text-base font-semibold py-2.5">16:00</p>
+                            <div class="relative before:absolute before:left-1/2 before:-translate-x-1/2 before:top-[15px] before:w-2.5 before:h-2.5 before:border-2 before:border-info before:rounded-full"></div>
+                            <div class="p-2.5 self-center ltr:ml-2.5 rtl:ltr:mr-2.5 rtl:ml-2.5">
+                                <p class="text-[#3b3f5c] dark:text-white-light font-semibold text-[13px]">Server rebooted successfully</p>
+                                <p class="text-white-dark text-xs font-bold self-center min-w-[100px] max-w-[100px]">8 hrs ago</p>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                </div>
+
+        </ng-container>
+
+
+    </div>
+
+
+
+
+
+
+         <!-- Modal -->
+    <modal
+        #ModalEventos
+        class="modal-top extra-large-modal animate animate-zoom-in-up"
+        [closeOnOutsideClick]="false"
+    >
+
+        <ng-template #modalHeader>
+            <div>
+                {{ modal_eventos.get('id')!.value ? 'Editar' : 'Registrar' }} Evento
+            </div>
+        </ng-template>
+        <ng-template #modalBody>
+            <app-modal_evento> </app-modal_evento>
+        </ng-template>
+        <ng-template #modalFooter>
+            <!-- (click)="ModalLineaTiempo.close()"  -->
+            <button type="button" class="btn btn-outline-danger" (click)="CerrarModalRegistroEdicionDetLineaTiempo()">Cancelar</button>
+            <!-- <button type="button" class="btn btn-primary ltr:ml-4 rtl:mr-4" (click)="CerrarModal()">Guardar</button> -->
+            <!-- (click)="ModalLineaTiempo.close()" -->
+        </ng-template>
+
+    </modal>

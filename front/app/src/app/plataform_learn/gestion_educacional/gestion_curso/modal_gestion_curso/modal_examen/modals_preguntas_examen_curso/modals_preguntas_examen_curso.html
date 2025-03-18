@@ -1,0 +1,62 @@
+<form [formGroup]="params_preguntas_examen_curso" class="text-sm space-y-5" (ngSubmit)="GuardarDataPreguntas()" ngNativeValidate>
+
+
+    <div  class="mb-5">
+        <label for="txtAcercaCurso">Pregunta</label>
+        <textarea id="txtAcercaCurso"  formControlName="pregunta"   rows="3"  class="form-textarea" placeholder="Ingresar la pregunta" ></textarea>
+    </div>
+
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div class="mb-5">
+            <label for="opcion">Opción 1 <input type="checkbox" formControlName="opcion1_correcta" class="form-checkbox"  /></label>
+            <textarea id="opcion" placeholder="Ingresar Opción 1" rows="3" class="form-textarea" formControlName="opcion1"></textarea>
+        </div>
+        
+        <div class="mb-5">
+            <label for="opcion">Opción 2   <input type="checkbox" formControlName="opcion2_correcta" class="form-checkbox"  /> </label>
+            <textarea id="opcion" placeholder="Ingresar Opción 2" rows="3" class="form-textarea" formControlName="opcion2" ></textarea>
+        </div>
+
+        <div class="mb-5">
+            <label for="opcion">Opción 3  <input type="checkbox" formControlName="opcion3_correcta" class="form-checkbox"  /> </label>
+            <textarea id="opcion" placeholder="Ingresar Opción 3" rows="3" class="form-textarea" formControlName="opcion3" ></textarea>
+        </div>
+
+        <div class="mb-5">
+            <label for="opcion">Opción 4  <input type="checkbox" formControlName="opcion4_correcta" class="form-checkbox"  /> </label>
+            <textarea id="opcion" placeholder="Ingresar Opción 4" rows="3" class="form-textarea" formControlName="opcion4" ></textarea>
+        </div>
+    
+        <div class="mb-5">
+            <label for="opcion">Opción 5  <input type="checkbox" formControlName="opcion5_correcta"  class="form-checkbox"  /> </label>
+            <textarea id="opcion" placeholder="Ingresar Opción 5" rows="3" class="form-textarea" formControlName="opcion5"></textarea>
+        </div>    
+
+        <div class="mb-5">
+
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Subir imagen de la pregunta    <code class="text-danger">esto es opcional</code> </label>
+                <button type="button" (click)="verArchivo('imagen_pregunta')" class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                    <icon-eye class="h-5 w-5" />
+                </button>
+            </div>
+            <input id="ctnFilePortada"  (change)="subirArchivo($event,'img','imagen_pregunta')"  formControlName="imagen_pregunta" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />   
+      
+        </div>
+        
+    </div>
+
+
+  
+
+   
+
+
+
+    <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ params_preguntas_examen_curso.controls['id'].value ? 'Actualizar' : 'Crear' }} Pregunta</button>
+
+</form>
+
+

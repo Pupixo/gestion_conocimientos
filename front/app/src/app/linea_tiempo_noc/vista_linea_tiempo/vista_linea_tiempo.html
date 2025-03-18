@@ -1,0 +1,79 @@
+<div>
+    <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">Linea de tiempo</a>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <span>Linea de Tiempo</span>
+        </li>
+    </ul>
+    
+    <div class="grid grid-rows-3 grid-flow-col gap-4">
+      
+
+        <div class="col-span-2 ...">
+            <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-1">
+                <div class="panel lg:row-span-2">
+                    <div class="mb-5 space-y-5">
+                        <div>
+                            <form class="mx-auto mb-5 w-full sm:w-1/2">
+                                <div class="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Busqueda de Incidencia por código..."
+                                        class="form-input h-11 rounded-full bg-white shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)] placeholder:tracking-wider ltr:pr-11 rtl:pl-11"
+                                        [(ngModel)]="search"
+                                        (ngModelChange)="searchResults()"
+                                        name="search"
+                                    />
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary absolute inset-y-0 m-auto flex h-9 w-9 items-center justify-center rounded-full p-0 ltr:right-1 rtl:left-1"
+                                    >
+                                        <icon-search class="mx-auto" />
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row-span-2 col-span-2 ...">
+            <div class="grid grid-cols-1 gap-6 pt-5 xl:grid-cols-1">
+                <!-- Basic -->
+                <div class="panel">
+                    <div class="mb-5 flex items-center justify-between">
+                        <h5 class="text-lg font-semibold dark:text-white-light">Linea de tiempo de eventos ocurridos al incidente</h5>
+                   
+                    </div>
+                    <div class="mb-5">
+                        <div class="mx-auto max-w-[900px]">
+                            <ng-container *ngFor="let item of filteredItem; index as i">
+                              
+                                <div class="flex justify-between">
+                                    <p class="text-center min-w-[58px] max-w-[100px] py-2.5 text-base font-semibold text-[#3b3f5c] dark:text-white-light">{{ item.fecha_hora }}</p>
+                                    <div
+                                        class="relative before:absolute before:left-1/2 before:top-[15px] before:h-2.5 before:w-2.5 before:-translate-x-1/2 before:rounded-full before:border-2
+                                        before:border-{{ getEstadoClass(item.estado) }}  after:absolute after:-bottom-[15px] after:left-1/2 after:top-[25px] after:h-auto after:w-0 after:-translate-x-1/2 after:rounded-full after:border-l-2
+                                        after:border-{{ getEstadoClass(item.estado) }} "
+                                    ></div>
+                                    <div class="self-center p-2.5 ltr:ml-2.5 rtl:ml-2.5 rtl:ltr:mr-2.5">
+                                        <p class="text-[13px] font-semibold text-[#3b3f5c] dark:text-white-light">{{ item.descripcion }}</p>
+                                        <p class="min-w-[100px] max-w-[100px] self-center text-xs font-bold text-white-dark">{{ getEstadoName(item.estado)  }}</p>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+      </div>
+</div>
+

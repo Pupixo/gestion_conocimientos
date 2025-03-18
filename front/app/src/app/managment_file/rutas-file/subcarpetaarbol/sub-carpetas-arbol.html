@@ -1,0 +1,51 @@
+
+<ng-container *ngIf="tieneSubCarpetas()">
+
+    <ng-container *ngFor="let item of data">
+        <ng-container *ngFor="let subfolder of item.sub_carpetas">
+            <!--sub_carpetas de lugar inicial-->
+            <li class="py-[5px]">
+                <div class="flex items-center">
+                    <button  type="button" (click)="toggleTreeview(subfolder,item.ruta +'$'+subfolder)">
+                        <icon-caret-down [class]="'inline w-5 h-5 text-primary relative ' + [treeview1.includes(subfolder) ? 'rotate-180' : '']" />
+                        <icon-folder class="inline text-primary ml-2" />
+                        {{ subfolder }}
+                    </button>
+                    <button type="button" (click)="CrearCarpeta(subfolder,item.ruta +'$'+subfolder)"  style="padding: 1px !important;border: white !important;" class="btn btn-outline-warning "> 
+                        <icon-cloud-folder class="h-4 w-4" /></button>
+                    <button type="button"  (click)="SubirArchivo(subfolder,item.ruta +'$'+subfolder)"  style="padding: 1px !important;border: white !important;" class="btn btn-outline-warning "> 
+                        <icon-cloud-file class="h-4 w-4" /></button>
+                    <button type="button" (click)="EliminarCarpeta(subfolder,item.ruta +'$'+subfolder)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-danger "> 
+                        <icon-trash-lines class="h-4 w-4" />
+                    </button>
+                </div>
+                <div [@slideDownUp]="!treeview1.includes(subfolder)" clisExpandedass="accordion-content">
+                    <ul class="ltr:pl-14 rtl:pr-14">
+                        <!-- <div id="nombre_carpeta-{{ subfolder }}"></div> -->
+                        <ng-container *ngIf="subfolder.length > 0">
+                            <app-sub-carpetas-arbol [subCarpetas]="item.ruta +'$'+subfolder"></app-sub-carpetas-arbol>
+                        </ng-container>
+
+                    </ul>
+                </div> 
+            </li>
+        </ng-container>
+        <!-- Archivos -->
+        <ng-container *ngFor="let archivo of item.archivos">
+            <li class="py-[5px] ltr:pl-7 rtl:pr-7 flex items-center gap-1">
+                <icon-txt-file class="inline h-4.5 w-4.5 text-primary ltr:mr-2 rtl:ml-2" />
+                {{ archivo }}
+                <button type="button" (click)="ReemplazarArchivo(archivo,item.ruta +'$'+archivo)"  style="padding: 1px !important;border: white !important;" class="btn btn-outline-primary btn-sm">
+                    <icon-cloud-download class="h-5 w-5" />
+                </button>
+                <button type="button"  (click)="DescargarArchivo(archivo,item.ruta +'$'+archivo)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-info btn-sm">
+                    <icon-cloud-upload class="h-5 w-5" />
+                </button>
+                <button type="button" (click)="EliminarArchivo(archivo,item.ruta +'$'+archivo)" style="padding: 1px !important;border: white !important;" class="btn btn-outline-danger btn-sm">
+                    <icon-trash-lines class="h-5 w-5" />
+                </button>
+            </li>
+        </ng-container>
+    </ng-container>
+    
+</ng-container>

@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  back:
+    build: 
+      context: ./back
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./back:/usr/src/app 
+    env_file:
+      - ./back.prod.env
+    command: sh -c "python manage.py migrate && gunicorn app.wsgi:application -c gunicorn_config.py"
+
+  db:
+    image: postgres:13 
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+    env_file:
+      - ./db.env
+    ports:
+      - 5434:5434
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile.prod
+    volumes:
+      - ./front/app:/usr/src/app
+    ports:
+      - 82:82
+
+
+volumes:
+  postgres_data_prod:
+    driver: local

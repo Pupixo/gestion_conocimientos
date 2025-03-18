@@ -1,0 +1,558 @@
+<div>
+    <!-- <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">    {{ 'learn_platform' | translate }}</a>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+            <span>{{ 'learn_claro' | translate }}</span>
+        </li>
+    </ul> -->
+
+
+    <div class="space-y-0  max-w-full">
+        <div class="panel" style="padding: 0px !important; height: 300px;">       
+            <div class="swiper mx-auto mb-5 max-w-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="image-wrapper">
+                            <img [src]="courseUsuList?.cursos?.img_fondo" class="max-h-80 w-full object-cover" alt="" />
+                            <div class="absolute top-1/4 z-[999] text-white ltr:left-12 rtl:right-12">
+                                <div class="text-base font-bold sm:text-3xl">Introducción</div>
+                                <div class="mt-1 hidden w-4/5 text-base font-medium sm:mt-5 sm:block">
+
+                                    {{ courseUsuList?.cursos?.introdu_curso }}
+                                </div>
+                                <!-- <button type="button" class="btn btn-primary mt-4">Mira el Trailer</button> -->
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>       
+        </div>
+    </div>
+
+ 
+
+        <div class="panel">
+           
+            <div class="mb-5 flex items-center justify-between">
+                <h5 class="text-lg font-semibold dark:text-white-light"></h5>
+            </div>
+            <div class="mb-5 mt-5">
+                <form class="space-y-5">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-6">
+                        <!-- 1 -->
+                        <div>
+                  
+                        </div>
+                        <!-- 2 -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="inline-block h-9 w-9 shrink-0 overflow-hidden rounded-full ltr:mr-2 rtl:ml-2.5">
+                                <img class="w-9 h-9 rounded-full overflow-hidden object-cover ring-2 ring-white dark:ring-[#515365] shadow-[0_0_15px_1px_rgba(113,106,202,0.30)] dark:shadow-none"
+                                [src]="FotoProfesor"
+                                alt="image" />
+                            </div>
+                            <div class="text-[#515365] dark:text-white-dark text-xl">                                                   
+                                {{ courseUsuList?.cursos?.docente_data?.[0]?.first_name }}
+                                {{ courseUsuList?.cursos?.docente_data?.[0]?.last_name }}
+                            </div>
+                    
+                        </div>
+                        <!-- 3 -->
+                        <div style="display: flex; align-items: center;">
+                            <icon-watch-time class="shrink-0 text-primary ltr:mr-2 rtl:ml-2" />
+                            <label class="text-xl">6h 46 m</label>                        
+                        </div>
+                        <!-- 4 -->
+                        <div>
+                        <label></label>
+                        </div>       
+                        <!-- 5 -->
+                        <div>
+                            <div class="flex items-center justify-center gap-1 text-[#e2a03f]">
+
+                                <ng-container *ngFor="let star of stars; let i = index">
+                                  <svg (click)="toggleStar(i)" width="34" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-7.5 w-7.5 cursor-pointer"  [ngClass]="{'fill-warning': star}">
+                                      <path
+                                          d="M9.15316 5.40838C10.4198 3.13613 11.0531 2 12 2C12.9469 2 13.5802 3.13612 14.8468 5.40837L15.1745 5.99623C15.5345 6.64193 15.7144 6.96479 15.9951 7.17781C16.2757 7.39083 16.6251 7.4699 17.3241 7.62805L17.9605 7.77203C20.4201 8.32856 21.65 8.60682 21.9426 9.54773C22.2352 10.4886 21.3968 11.4691 19.7199 13.4299L19.2861 13.9372C18.8096 14.4944 18.5713 14.773 18.4641 15.1177C18.357 15.4624 18.393 15.8341 18.465 16.5776L18.5306 17.2544C18.7841 19.8706 18.9109 21.1787 18.1449 21.7602C17.3788 22.3417 16.2273 21.8115 13.9243 20.7512L13.3285 20.4768C12.6741 20.1755 12.3469 20.0248 12 20.0248C11.6531 20.0248 11.3259 20.1755 10.6715 20.4768L10.0757 20.7512C7.77268 21.8115 6.62118 22.3417 5.85515 21.7602C5.08912 21.1787 5.21588 19.8706 5.4694 17.2544L5.53498 16.5776C5.60703 15.8341 5.64305 15.4624 5.53586 15.1177C5.42868 14.773 5.19043 14.4944 4.71392 13.9372L4.2801 13.4299C2.60325 11.4691 1.76482 10.4886 2.05742 9.54773C2.35002 8.60682 3.57986 8.32856 6.03954 7.77203L6.67589 7.62805C7.37485 7.4699 7.72433 7.39083 8.00494 7.17781C8.28555 6.96479 8.46553 6.64194 8.82547 5.99623L9.15316 5.40838Z"
+                                          stroke="currentColor"
+                                          stroke-width="1.5"
+                                      />
+                                  </svg>
+                              </ng-container>
+                              <span class="text-black ltr:ml-1 rtl:mr-1">Califique el curso</span>
+                            </div>
+
+                        </div>       
+                        <!-- 6 -->
+                        <div>
+                          
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-2">
+                <!-- Icons -->
+                <div class="panel">
+                    <div class="mb-5 flex items-center justify-between">
+                        <h5 class="text-lg font-semibold dark:text-white-light">Tabla de Contenidos</h5>
+                    </div>
+                    <div class="mb-5">
+                        <div class="space-y-2 font-semibold">
+                            <ng-container *ngFor="let contenido of courseUsuList?.cursos?.contenidos_data; index as iter">
+                                <div class="whitespace-normal break-words  rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                    
+                                    <button
+                                        type="button"
+                                        class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b] whitespace-normal break-words"
+                                        [ngClass]="{ '!text-primary': accordians === (iter+1) }"
+                                        (click)="accordians === (iter+1) ? (accordians = null) : (accordians = (iter+1))"
+                                    >
+                                        <icon-airplay class="shrink-0 text-primary ltr:mr-2 rtl:ml-2" />
+                                        <div class="w-11/12	whitespace-normal break-words">
+                                            {{  contenido.titulo_content }} 
+                                        </div>
+                                        <div class="ltr:ml-auto rtl:mr-auto" [ngClass]="{ 'rotate-180': accordians === (iter+1) }"><icon-caret-down /></div>
+                                    </button>
+
+                                    <div [@slideDownUp]="accordians !== (iter+1)" class="accordion-content">
+
+
+                                        <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                            <div class="flex flex-col rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b]">
+                                                <ng-container *ngFor="let tema of contenido.temas">
+                                                            <div class="flex flex-row justify-between rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b] whitespace-normal break-words ">
+                                                                <a href="javascript:;" (click)="goToTema(tema.id)" class="w-full px-4 py-2.5 hover:bg-[#eee] dark:hover:bg-[#eee]/10 whitespace-normal break-words">{{  tema.titulo_tema }}</a>
+                                                                <!-- <a href="javascript:;" class="px-4 py-2.5  dark:hover:bg-[#eee]/10">30 min</a> -->
+                                                            </div>
+                                                </ng-container>
+                                                <ng-container *ngFor="let quiz of contenido.quiz">
+                                                    <div class="flex flex-row justify-between rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b] whitespace-normal break-words">
+                                                        <a href="javascript:;"  (click)="goToQuiz(quiz.id)"  class="w-6/12 border-b border-[#e0e6ed] dark:border-[#1b2e4b] px-4 py-2.5 hover:bg-[#eee] dark:hover:bg-[#eee]/10 whitespace-normal break-words"> {{  quiz.titulo_quiz }}   </a>
+                                                        <a href="javascript:;" class="w-6/12 px-4 py-2.5  dark:hover:bg-[#eee]/10"> {{  DuracionTiempo(quiz.tiempo_quiz) }} </a>
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                
+                    <ng-container *ngIf="courseUsuList?.estado_examen_curso == 1 || courseUsuList?.estado_examen_curso == null ">
+
+                        <div class="mb-5">
+                            <div class="space-y-2 font-semibold ">
+                                <ng-container *ngFor="let examen of courseUsuList?.cursos?.examen_final; index as iter">
+                                    <div class="rounded border border-[#d3d3d3] dark:border-[#1b2e4b]">
+                                        <button
+                                            type="button"
+                                            class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                            [ngClass]="{ '!text-primary': accordiansexamenfinal === 1 }"
+                                            (click)="accordiansexamenfinal === 1 ? (accordiansexamenfinal = null) : (accordiansexamenfinal = 1)"
+                                        >
+                                            Examen Final de Curso
+                                        </button>
+                                        <div [@slideDownUp]="accordiansexamenfinal !== 1" class="accordion-content">
+                                            <div class="space-y-2 border-t border-[#d3d3d3] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                                <!-- justify-between -->
+                                                <div class="flex flex-row  rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b] whitespace-normal break-words">
+                                                    <a href="javascript:;"  (click)="goToExamen(examen.id, courseUsuList?.id)"  class="w-4/5 flex-1 border-b border-[#e0e6ed] dark:border-[#1b2e4b] px-4 py-2.5 hover:bg-[#eee] dark:hover:bg-[#eee]/10"> {{  examen.titulo_examen }} </a>
+                                                    <a href="javascript:;" class="w-1/5 flex-none px-4 py-2.5  dark:hover:bg-[#eee]/10"> {{  DuracionTiempo(examen.tiempo_examen) }} </a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                    </ng-container>
+
+
+                    <ng-container *ngIf="courseUsuList?.estado_examen_curso == 3">
+
+                        <div class="mb-5 flex w-full justify-center">
+                            <div class="space-y-2 font-semibold  w-2/6 ">
+                                <ng-container *ngFor="let nota_examen of courseUsuList?.calificacion_exam_curso_data; index as iter">
+                                    <div class="rounded border border-[#d3d3d3] dark:border-[#ff4f4f]">
+                                        <button
+                                            type="button"
+                                            class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                            [ngClass]="{ '!text-primary': accordiansnota === 0 }"
+                                            (click)="accordiansnota === 1 ? (accordiansnota = null) : (accordiansnota = 1)"
+                                        >
+                                            Vea su nota
+                                        </button>
+                                        <div [@slideDownUp]="accordiansnota !== 1" class="accordion-content">
+                                            <div class="space-y-2 border-t border-[#7c4747] p-4 text-[13px] text-white-dark dark:border-[#1b2e4b]">
+                                                <div class="flex flex-row  rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b]">
+                                                    <a href="javascript:;"  class="text-primary flex-1 border-b border-[#e0e6ed] dark:border-[#8090a9] px-4 py-2.5 hover:bg-[#d2d3d7] dark:hover:bg-[#eee]/10"> {{  nota_examen.nota }}   </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                    </ng-container>
+
+                    
+                    <ng-container *ngIf="courseUsuList?.estado_examen_curso == 2">
+
+                        <div class="mb-5 flex w-full justify-center	">
+                            <div class="space-y-2 font-semibold mb-5 w-2/6 ">
+                                <ng-container *ngFor="let examen of courseUsuList?.cursos?.examen_final; index as iter">
+                                    <div class="rounded border border-[#ff3c3c] dark:border-[#4ff9ff]">
+                                        <button
+                                            type="button"
+                                            class="flex w-full items-center p-4 text-white-dark dark:bg-[#1b2e4b]"
+                                        >
+                                            Parece se cerro el examen porque no estabas en pantalla completa,<br> porfavor llama al siguiente <br> número 999 999 999 para que te den una solución
+                                        </button>
+                                 
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                    </ng-container>
+
+                </div>
+
+            <!-- Justify Vertical Pills Right -->
+            <div class="panel">
+                <div class="mb-5 flex items-center justify-between">
+                    <h5 class="text-lg font-semibold dark:text-white-light"></h5>
+                </div>
+                <div class="mb-5 flex flex-col sm:flex-row sm:gap-4">
+                    <div class="w-6/12 mb-5 space-y-2 sm:order-1 sm:mb-0 sm:flex-[0_0_20%]">
+                        <a
+                            href="javascript:;"
+                            class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-success hover:text-white"
+                            [ngClass]="{ '!bg-success text-white': tab22.toLowerCase() === 'home' }"
+                            (click)="tab22 = 'home'"
+                        >
+                        ACERCA DE ESTE CURSO
+                        </a>
+                        <a
+                            href="javascript:;"
+                            class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-success hover:text-white"
+                            [ngClass]="{ '!bg-success text-white': tab22.toLowerCase() === 'profile' }"
+                            (click)="tab22 = 'profile'"
+                        >
+                        LO QUE APRENDERÁS
+
+                        </a>
+                        <a
+                            href="javascript:;"
+                            class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-success hover:text-white"
+                            [ngClass]="{ '!bg-success text-white': tab22.toLowerCase() === 'messages' }"
+                            (click)="tab22 = 'messages'"
+                        >
+                        SOBRE EL AUTOR
+                        </a>
+
+
+                        <!-- 
+                            <a
+                                href="javascript:;"
+                                class="block rounded-md p-3.5 py-2 !outline-none transition-all duration-300 hover:bg-success hover:text-white"
+                                [ngClass]="{ '!bg-success text-white': tab22.toLowerCase() === 'files_usados' }"
+                                (click)="tab22 = 'files_usados'"
+                            >
+                            Archivos Usados
+                            </a> 
+                        -->
+                
+                    </div>
+                    <div class="w-6/12 flex-1 text-sm">
+                        <div *ngIf="tab22.toLowerCase() === 'home'">
+                            <h4 class="mb-4 text-2xl font-semibold">Bienvenido</h4>
+                            <p class="mb-4  whitespace-normal break-words ">
+                                {{ courseUsuList?.cursos?.acerca_curso }}
+                            </p>
+                       
+                        </div>
+                        <div *ngIf="tab22.toLowerCase() === 'profile'">
+                            <p class="mb-4  whitespace-normal break-words ">
+                                {{ courseUsuList?.cursos?.resumen_curso }}
+                            </p>
+                        </div>
+                        <div *ngIf="tab22.toLowerCase() === 'messages'">
+                                    <!-- [ngStyle]="{'background-image': 'url(' + temas.img_fondo + ')'}" -->
+                            <div class="flex items-start">
+                                <div class="h-20 w-20 flex-none ltr:mr-4 rtl:ml-4">
+                                    <img                                       
+                                        [src]="FotoProfesor"
+                                        alt="FotoProfesor"
+                                        class="m-0 h-20 w-20 rounded-full object-cover ring-2 ring-[#ebedf2] dark:ring-white-dark"
+                                    />
+                                </div>
+                                <div class="w-6/12 flex-auto">
+                                    <!-- <h5 class="mb-4 text-xl font-medium">Media heading</h5> -->
+                                    <p class="text-white-dark whitespace-normal break-words">
+                                        {{ courseUsuList?.cursos?.sobre_autor }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div *ngIf="tab22.toLowerCase() === 'files_usados'">
+                          
+                            <div class="flex items-start">
+                                <div class="flex-auto">
+                                    <h5 class="mb-4 text-xl font-medium">Archivos Usados</h5>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b]">
+                                <div class="flex border-b border-[#e0e6ed] px-4 py-2.5 hover:bg-[#eee] dark:border-[#1b2e4b] dark:hover:bg-[#eee]/10">
+                                    <div class="mt-0.5 text-primary ltr:mr-2 rtl:ml-2.5">
+                                        <icon-file class="h-5 w-5" />
+
+                                    </div>
+                                    <div class="flex-1 font-semibold">
+                                        <h6 class="mb-1 text-base">Archivo1.jpg</h6>
+                                        <p class="text-xs">pesa :2mb</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group flex border-b border-[#e0e6ed] bg-primary px-4 py-2.5 text-white shadow-[0_1px_15px_1px_rgba(67,97,238,0.15)] hover:bg-[#eee] hover:text-black dark:border-[#1b2e4b] dark:hover:bg-[#eee]/10 dark:hover:text-white"
+                                >
+                                    <div class="mt-0.5 text-white group-hover:text-primary ltr:mr-2 rtl:ml-2.5">
+                                        <icon-file class="h-5 w-5" />
+                                    </div>
+                                    <div class="flex-1 font-semibold">
+                                        <h6 class="mb-1 text-base">Archivo3.docx</h6>
+                                        <p class="text-xs">pesa :500KB</p>
+                                    </div>
+                                </div>
+                                <div class="flex px-4 py-2.5 hover:bg-[#eee] dark:hover:bg-[#eee]/10">
+                                    <div class="mt-0.5 text-primary ltr:mr-2 rtl:ml-2.5">
+                                        <icon-file class="h-5 w-5" />
+                                    </div>
+                                    <div class="flex-1 font-semibold">
+                                        <h6 class="mb-1 text-base">Archivo2.excel</h6>
+                                        <p class="text-xs">pesa :1mb</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="prose bg-[#f1f2f3] px-4 py-9 sm:px-8 sm:py-16 rounded max-w-full dark:bg-[#1b2e4b] dark:text-white-light">
+            <h2 class="text-dark mb-5  mt-4 text-center text-5xl dark:text-white-light">Feedback</h2>
+            <p class="lead mt-3 mb-4 dark:text-white-light">Lo que otros estudiantes convertidos en profesionales tienen que decir sobre nosotros después de aprender con nosotros y alcanzar sus metas.</p>
+            
+            
+            
+            <div class="flex flex-row justify-between gap-6">
+             
+                <blockquote class="text-black p-5 ltr:pl-3.5 rtl:pr-3.5 bg-white shadow-md rounded-tr-md rounded-br-md border border-white-light border-l-2 !border-l-primary dark:bg-[#060818] dark:border-[#060818]">
+                    <div class="flex items-start">
+                        <div class="w-14 h-14 ltr:mr-5 rtl:ml-5 flex-none">
+                            <img src="/assets/images/profile-34.jpeg" alt="image" class="w-14 h-14 rounded-full object-cover m-auto" />
+                        </div>
+                        <p class="not-italic text-[#515365] text-sm dark:text-white-light m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    </div>
+                    <small class="ltr:text-right rtl:text-left w-full not-italic text-xs text-[#777] block before:w-3 before:h-[1px] before:bg-[#777] before:inline-block before:opacity-50 before:relative before:-top-1 before:ltr:mr-1 rtl:ml-1">Someone famous <cite class="italic">Source Title</cite></small>
+                    <div class="flex items-center justify-start text-[#e2a03f]">
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3" />
+                    </div>
+                </blockquote>
+    
+                <blockquote class="text-black p-5 ltr:pl-3.5 rtl:pr-3.5 bg-white shadow-md rounded-tr-md rounded-br-md border border-white-light border-l-2 !border-l-primary dark:bg-[#060818] dark:border-[#060818]">
+                    <div class="flex items-start">
+                        <div class="w-14 h-14 ltr:mr-5 rtl:ml-5 flex-none">
+                            <img src="/assets/images/profile-34.jpeg" alt="image" class="w-14 h-14 rounded-full object-cover m-auto" />
+                        </div>
+                        <p class="not-italic text-[#515365] text-sm dark:text-white-light m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    </div>
+                    <small class="ltr:text-right rtl:text-left w-full not-italic text-xs text-[#777] block before:w-3 before:h-[1px] before:bg-[#777] before:inline-block before:opacity-50 before:relative before:-top-1 before:ltr:mr-1 rtl:ml-1">Someone famous <cite class="italic">Source Title</cite></small>
+                    <div class="flex items-center justify-start text-[#e2a03f]">
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3" />
+                    </div>
+                </blockquote>
+            </div>
+       
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 pt-5 lg:grid-cols-3">
+
+
+            <div
+                class="relative mt-8 rounded-md p-6 pt-12 "
+            >
+                <div
+                    class="absolute -top-8 mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-md bg-primary text-white-light ltr:left-6 rtl:right-6"
+                >
+                    <icon-box class="h-12 w-12" />
+                </div>
+                <h5 class="mb-3.5 text-lg font-semibold text-dark dark:text-white-light">Estudiante Feedback</h5>
+                <div class="flex items-center justify-start text-[#e2a03f]">
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10" />
+                </div>
+                <!-- <h5 class="mb-3.5 text-lg font-semibold text-dark dark:text-white-light">
+                    <a href="javascript:;" class="group align-middle font-semibold text-primary hover:underline">
+                        4.7
+                    </a>
+                </h5> -->
+
+               
+            </div>
+
+            
+            <div class="mb-5 space-y-6 px-4 py-3">
+                <div class="h-4 w-full rounded-full bg-[#ebedf2] dark:bg-dark/40">
+
+                    <div class="bg-primary h-4 rounded-full w-0 animated-progress" style="background-image: linear-gradient(45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent); background-size: 1rem 1rem;"></div>
+                </div>
+                <div class="h-4 w-full rounded-full bg-[#ebedf2] dark:bg-dark/40">
+                    <div class="bg-primary h-4 rounded-full w-1/4 animated-progress" style="background-image: linear-gradient(45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent); background-size: 1rem 1rem;"></div>
+                </div>
+                <div class="h-4 w-full rounded-full bg-[#ebedf2] dark:bg-dark/40">
+                    <div class="bg-primary h-4 rounded-full w-2/5 animated-progress" style="background-image: linear-gradient(45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent); background-size: 1rem 1rem;"></div>
+                </div>
+                <div class="h-4 w-full rounded-full bg-[#ebedf2] dark:bg-dark/40">
+                    <div class="bg-primary h-4 rounded-full w-2/4 animated-progress" style="background-image: linear-gradient(45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent); background-size: 1rem 1rem;"></div>
+                </div>
+              
+                <div class="h-4 w-full rounded-full bg-[#ebedf2] dark:bg-dark/40">
+                    <div class="bg-primary h-4 rounded-full w-full animated-progress" style="background-image: linear-gradient(45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent); background-size: 1rem 1rem;"></div>
+                </div>
+            </div>
+
+
+            <div class="flex flex-col ">
+                <div class="flex items-center justify-start text-[#e2a03f]">
+                    <icon-star class="h-10 w-10" />
+                    <icon-star class="h-10 w-10" />
+                    <icon-star class="h-10 w-10" />
+                    <icon-star class="h-10 w-10" />
+                    <icon-star class="h-10 w-10" />
+                </div>
+
+                <div class="flex items-center justify-start text-[#e2a03f]">
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 " />
+                    <icon-star class="h-10 w-10 " />
+                    <icon-star class="h-10 w-10 " />
+                    <icon-star class="h-10 w-10" />
+                </div>
+
+                <div class="flex items-center justify-start text-[#e2a03f]">
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 " />
+                    <icon-star class="h-10 w-10 " />
+                    <icon-star class="h-10 w-10" />
+                </div>
+
+                <div class="flex items-center justify-start text-[#e2a03f]">
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 " />
+                    <icon-star class="h-10 w-10" />
+                </div>
+
+                <div class="flex items-center justify-start text-[#e2a03f]">
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                    <icon-star class="h-10 w-10 fill-warning" />
+                </div>
+
+          
+            </div>
+
+
+        </div>
+
+        <div class="flex w-full flex-wrap justify-center gap-6 px-4 py-9">
+
+            <!-- list -->
+            <div class="flex mb-5">
+                <div class="ltr:mr-4 rtl:ml-4">
+                    <img src="/assets/images/profile-5.jpeg" alt="image" class="w-14 h-14 rounded" />
+                </div>
+                <div class="flex-1">
+                    <h5 class="mb-2 text-[15px] font-semibold text-primary">Luke Ivory</h5>
+                    <p class="min-w-[100px] max-w-[100px] self-center text-xs font-bold text-white-dark">6 hrs ago</p>
+                    <p class="media-text"> Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum neque eu, gravida neque. </p>
+                    <div class="flex items-center justify-start text-[#e2a03f]">
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex mb-5">
+                <div class="ltr:mr-4 rtl:ml-4">
+                    <img src="/assets/images/profile-5.jpeg" alt="image" class="w-14 h-14 rounded" />
+                </div>
+                <div class="flex-1">
+                    <h5 class="mb-2 text-[15px] font-semibold text-primary">Luke Ivory</h5>
+                    <p class="min-w-[100px] max-w-[100px] self-center text-xs font-bold text-white-dark">6 hrs ago</p>
+
+                    <p class="media-text"> Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum neque eu, gravida neque. </p>
+                    <div class="flex items-center justify-start text-[#e2a03f]">
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="ltr:mr-4 rtl:ml-4">
+                    <img src="/assets/images/profile-5.jpeg" alt="image" class="w-14 h-14 rounded" />
+                </div>
+                <div class="flex-1">
+                    <h5 class="mb-2 text-[15px] font-semibold text-primary">Luke Ivory</h5>
+                    <p class="min-w-[100px] max-w-[100px] self-center text-xs font-bold text-white-dark">6 hrs ago</p>
+                    <p class="media-text"> Fusce condimentum cursus mauris et ornare. Mauris fermentum mi id sollicitudin viverra. Aenean dignissim sed ante eget dapibus. Sed dapibus nulla elementum, rutrum neque eu, gravida neque. </p>
+                    <div class="flex items-center justify-start text-[#e2a03f]">
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3 fill-warning" />
+                        <icon-star class="h-3 w-3" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+</div>

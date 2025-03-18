@@ -1,0 +1,77 @@
+
+    <div class="grid grid-cols-3 gap-4">
+        <h5 class="text-lg font-semibold dark:text-white-light">Datos principales de la incidencia</h5>
+
+        <div class="col-span-3 ...">
+            <form  [formGroup]="parametros_modal" class="text-sm space-y-5 tbl-contenidos-modal" (ngSubmit)="GuardarDatos()" ngNativeValidate>
+                <div class="grid grid-cols-1 sm:grid-cols-1 gap-4">
+
+                    <form class="space-y-5" ngNativeValidate>
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+                            <div>
+                                <label for="browserFname">Fecha y Hora del Evento</label>
+                                <input
+                                    id="fecha_hora_evento"
+                                    name="browserFname"
+                                    type="text"
+                                    placeholder="Fecha y Hora del Evento"
+                                    formControlName="fecha_hora_evento" 
+                                    class="form-input"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label for="browserLname">Descripción del Evento</label>
+                                <input
+                                    id="browserLname"
+                                    name="browserLname"
+                                    type="text"
+                                    placeholder="Descripción del Evento"
+                                    formControlName="descrip_evento" 
+                                    class="form-input"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label for="browserEmail">Estado</label>
+                                <select class="form-select form-select-lg text-white-dark"   formControlName="estado_evento" >
+                                    <option>Estados</option>
+                                    <option>Rojo</option>
+                                    <option>Anaranjado</option>
+                                    <option>Amarillo</option>
+                                    <option>Azul</option>
+
+                                </select>
+                              
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-5 md:grid-cols-1">
+
+                            <div class="md:col-span-2">
+                                <label for="browserCity">NOC</label>
+                                <div>
+                                    <select class="form-select form-select-lg text-white-dark" formControlName="noc" >
+                                        <option>Seleccione el Noc al que pertenece el evento</option>
+                                        <option>NOC TI</option>
+                                        <option>NOC DC</option>
+                                        <option>NOC ENERGIA</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary !mt-6">{{ modal_eventos.get('id')!.value ? 'Editar' : 'Registrar' }} el evento</button>
+                    </form>
+
+
+                </div>
+                    
+            </form>
+        </div> 
+
+      </div>
+
+
+
+

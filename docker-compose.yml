@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  back: 
+    build: ./back
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./back:/usr/src/app 
+    ports:
+      - 8000:8000
+    env_file:
+      - ./back.env
+
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_hitss_proceso:/var/lib/postgresql/data
+    env_file:
+      - ./db.env
+    ports:
+      - 5432:5432
+
+  front:
+    build: ./front
+    volumes:
+      - ./front/app:/usr/src/app
+    ports:
+      - 4200:4200
+
+volumes:
+  postgres_hitss_proceso:
+    driver: local
+    # driver_opts:
+    #   size: 10GB
+  front:
+      driver: local
+      # driver_opts:
+      #   size: 20GB

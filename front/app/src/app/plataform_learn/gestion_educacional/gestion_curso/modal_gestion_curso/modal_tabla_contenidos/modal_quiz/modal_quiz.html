@@ -1,0 +1,139 @@
+<form [formGroup]="params_quiz" class="text-sm space-y-5" (ngSubmit)="GuardarDataCursoTblContenido()" ngNativeValidate>
+
+    <div class="mb-5">
+        <label for="tituloQuiz">Titulo del quiz</label>
+        <input id="tituloQuiz" type="text" placeholder="Ingresar Nombre del Curso" class="form-input" formControlName="titulo_quiz" />
+    </div>
+
+    <div class="mb-5">
+        <label for="tiempoQuiz">Tiempo del Quiz</label>
+        <input id="tiempoQuiz"  formControlName="tiempo_quiz" type="text" placeholder="Hora:Minutos" class="form-input" [textMask]="{mask: tiempomascara}" />
+    </div>
+
+    <div  class="mb-5">
+        <label for="txtAcercaCurso">Objetivo del Quiz</label>
+        <textarea id="txtAcercaCurso"  formControlName="objetivo_quiz" rows="3" class="form-textarea" placeholder="Ingresar datos Acerca de este curso y sus secciones" ></textarea>
+    </div>
+
+    <div class="mb-5">
+
+        <div class="flex items-center space-x-2">
+            <label for="ctnFileLogo">Subir imagen del quiz    <code class="text-danger">esto es opcional</code> </label>
+            <button type="button" (click)="verArchivo('imagen_quiz')" class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                <icon-eye class="h-5 w-5" />
+            </button>
+        </div>
+        <input id="ctnFilePortada"  (change)="subirArchivo($event,'img','imagen_quiz')"  formControlName="imagen_quiz" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />   
+  
+    </div>
+
+    <ng-container *ngIf="params_quiz.get('id')!.value > 0">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <div class="flex items-center space-x-2">
+                    <label for="ctnFileLogo">Lista de preguntas del Quiz</label>
+                    <button  (click)="ModalPreguntasOpen()"  type="button" class="btn  btn-outline-info btn-sm">
+                      <icon-plus class="h-5 w-5" />
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mb-5">
+
+            <div class="datatable">
+                <ng-datatable
+                    [rows]="PreguntasQuizList"
+                    [columns]="columnasPreguntasQuiz"
+                    [columnFilter]="true"
+                    skin="whitespace-nowrap table-hover"
+                    firstArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M13 19L7 12L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M16.9998 19L10.9998 12L16.9998 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    lastArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M11 19L17 12L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path opacity="0.5" d="M6.99976 19L12.9998 12L6.99976 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg> '
+                    previousArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M15 5L9 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                    nextArrow='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4.5 h-4.5 rtl:rotate-180"> <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>'
+                >
+
+                    <ng-template slot="action"  let-value="data" >
+                        <div class="flex items-center">
+                            <div>
+                                <button type="button" class="ltr:mr-2 rtl:ml-2" ngxTippy="Editar" (click)="ModalPreguntasOpen(value)">
+                                    <icon-pencil />
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-sm btn-outline-danger" (click)="EliminarPregunta(value)">
+                                     <icon-trash />
+                                </button>
+                            </div>
+                        </div>
+                    </ng-template>
+
+
+                </ng-datatable>
+            </div>
+            <!-- <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pregunta</th>
+                            <th>Opción 1</th>
+                            <th>Opción 2</th>
+                            <th>Opción 3</th>
+                            <th>Opción 4</th>
+                            <th>Opción 5</th>
+                            <th class="!text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let pregunta of PreguntasQuizList">
+
+                            <tr *ngFor="let data of tableData;">
+                                <td class="whitespace-nowrap"> <p>{{ pregunta.pregunta }}</p> </td>
+                                <td> {{ pregunta.opcion1 }}</td>
+                                <td>{{ pregunta.opcion2 }}</td>
+                                <td>{{ pregunta.opcion3 }}</td>
+                                <td>{{ pregunta.opcion4 }}</td>
+                                <td>{{ pregunta.opcion5 }}</td>
+                                <td class="text-center">
+                                    <ul class="flex items-center justify-center gap-2">
+                                   
+                                        <li>
+                                            <a  (click)="ModalPreguntasOpen(pregunta)" href="javascript:;" ngxTippy data-tippy-content="Edit">
+                                                <icon-pencil class="text-success" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a  (click)="EliminarPregunta(pregunta)" href="javascript:;" ngxTippy data-tippy-content="Delete">
+                                                <icon-trash-lines class="text-danger" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div> -->
+        </div>
+
+    </ng-container>
+    <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ params_quiz.controls['id'].value ? 'Actualizar' : 'Crear' }} Quiz</button>
+</form>
+
+
+
+
+<!-- Modal --> 
+<modal #ModalPreguntas class="modal-top extra-large-modal animate animate-fade-in-up"   [closeOnOutsideClick]="false">
+    <ng-template #modalHeader>
+        <div class="!font-medium">{{ params_preguntas.controls['id'].value ? 'Editar' : 'Registrar' }} Pregunta  </div>    
+    </ng-template>
+    <ng-template #modalBody>
+        <app-modals_preguntas> </app-modals_preguntas>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="ModalPreguntasCerrar()" class="btn btn-outline-danger">Cerrar</button>
+    </ng-template>
+</modal>

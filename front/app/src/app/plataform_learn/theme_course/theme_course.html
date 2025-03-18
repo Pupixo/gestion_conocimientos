@@ -1,0 +1,93 @@
+<div>
+  
+
+    <div class="space-y-8 pt-5">
+        <!-- default -->
+        <div class="panel bg-indigo-600">
+            <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-1">
+
+                <div *ngIf="this.themeList[0].video_tema == null; else noTemas">
+
+                   
+                </div>
+                <ng-template #noTemas>
+                    <!-- <label for="" class="bg-white">   <b>Total Temas: </b>  No hay temas disponibles </label> -->
+                    <video width="100%" height="500px" s controls>
+                        <source src="{{this.themeList[0].video_tema}}" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video.
+                    </video>
+                </ng-template>
+
+
+                <!-- <iframe width="100%" height="500px" src="https://www.youtube.com/embed/zb0p8avi9mc?si=2RBf9VmguXjVYYAD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+            </div>
+            <div class="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-1">
+                <div class="mb-5 flex items-center justify-between">
+                    <h5 class="text-lg font-semibold text-white-light">{{  this.themeList[0].titulo_tema }}</h5>
+
+                </div>
+                <div class="mb-5 text-white">
+                    <p class="mb-5">
+                        
+                        {{  this.themeList[0].resumen_tema }}
+                    
+                    
+                    </p>
+                </div>
+            </div>
+
+            <!-- <div class="mb-5">
+                <div class="flex w-full">
+                    <div class="flex w-1/2 items-center justify-center">
+                        <button type="button" class="btn btn-primary rounded-full">Clase Anterior</button>
+                    </div>
+                    <div class="flex w-1/2 items-center justify-center">
+                        <button type="button" class="btn btn-outline-primary rounded-full">Siguiente Clase</button>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+ 
+
+    
+    <div class="grid grid-cols-1 gap-6 xl:grid-cols-1">
+        <!-- Basic -->
+        <div class="panel">
+            <div class="mb-5 flex items-center justify-between">
+                <h5 class="text-lg font-semibold dark:text-white-light">Archivos Usados</h5>
+            </div>
+            <div class="mb-5">
+                <p class="mb-5 text-white-dark">Descargue los archivos para la mejor entendimiento de la clase</p>
+
+                <div class="w-full rounded-md border border-white-dark/20 p-5 text-white-dark">
+                    <li   *ngFor="let file of  this.themeList[0].archivos"   class="mb-1">
+                        <a [href]="file.archivo" target="_blank" rel="noopener noreferrer">
+                                <span>{{ getFileNameUrl(file.archivo) }}</span>
+                        </a>
+                        
+                    </li>
+                  
+                    <!-- <ol class="list-inside list-decimal space-y-3 font-semibold">
+                       
+                        <li class="mb-1">Archivo2.pdf</li>
+                        <li class="inline">
+                            <ol class="list-inside list-decimal space-y-3 ltr:pl-5 rtl:pr-5">
+                                <li class="mb-1 mt-1">Archivo2 A.pdf</li>
+                                <li class="mb-1">Archivo2 B.pdf</li>
+                                <li class="mb-1">Archivo2 C.pdf</li>
+                            </ol>
+                        </li>
+                        <li class="mb-1 mt-1">Archivo3.jgp</li>
+                        <li class="mb-1">Archivo4.jgp</li>
+                    </ol> -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

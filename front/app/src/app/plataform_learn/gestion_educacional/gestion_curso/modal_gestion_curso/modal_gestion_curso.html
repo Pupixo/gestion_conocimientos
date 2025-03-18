@@ -1,0 +1,199 @@
+<form [formGroup]="params" class="text-sm space-y-5 tbl-contenidos-modal" (ngSubmit)="GuardarDataCurso()" ngNativeValidate>
+
+    <div class="mb-5">
+        <label for="txtNameCurso">Nombre de curso</label>
+        <input id="txtNameCurso"  formControlName="nom_curso" type="text" placeholder="Ingresar Nombre del Curso" class="form-input"  />
+    </div>
+
+    <div class="mb-5">
+        <label for="txtIntrodCurso">Introducción de curso</label>
+        <textarea id="txtIntrodCurso"   formControlName="introdu_curso" rows="2" class="form-textarea" placeholder="Ingresar Introducción de curso" ></textarea>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Subir Logo</label>
+                <button type="button" (click)="verArchivo('img_logo')" class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                    <icon-eye class="h-5 w-5" />
+                </button>
+            </div>
+            <input id="ctnFileLogo" (change)="subirArchivo($event,'img','img_logo')"  formControlName="img_logo"  type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />            
+        </div>
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Subir fondo</label>
+                <button type="button"  (click)="verArchivo('img_fondo')"  class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                  <icon-eye class="h-5 w-5" />
+                </button>
+            </div>
+            <input id="ctnFilePortada" (change)="subirArchivo($event,'img','img_fondo')" formControlName="img_fondo" type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />   
+        </div>
+        <div>
+            <div class="flex items-center space-x-2">
+                <label for="ctnFileLogo">Subir video trailer</label>
+                <button type="button" (click)="verArchivo('vid_trailer')" class="pr-0 pl-0 pt-0 pb-0 btn btn-outline-info btn-sm">
+                  <icon-eye class="h-5 w-5" />
+                </button>
+            </div>
+            <input id="ctnFilePortada" (change)="subirArchivo($event,'vid','vid_trailer')" formControlName="vid_trailer"  type="file" class="form-input file:py-2 file:px-4 file:border-0 file:font-semibold p-0 file:bg-primary/90 ltr:file:mr-5 rtl:file:ml-5 file:text-white file:hover:bg-primary" />   
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        <div >
+            <!-- class="md:col-span-2" -->
+            <label for="txtResumenCurso">Resumen del curso</label>
+            <textarea id="txtResumenCurso"   formControlName="resumen_curso" rows="6" class="form-textarea" placeholder="Ingresar resumen del Cursos" ></textarea>
+        </div>
+        <div>
+            <label for="txtAcercaCurso">Acerca de este curso</label>
+            <textarea id="txtAcercaCurso"  formControlName="acerca_curso" rows="6" class="form-textarea" placeholder="Ingresar datos Acerca de este curso y sus secciones" ></textarea>
+        </div>
+        <div>
+            <label for="txtAcercaAuthor">Acerca del Autor</label>
+            <textarea id="txtAcercaAuthor"   formControlName="sobre_autor" rows="6" class="form-textarea" placeholder="Ingresar datos del autor de este curso" ></textarea>
+        </div>
+    </div>
+
+    <!-- [(ngModel)]="data_profesor" -->
+
+    <div class="mb-5">
+        <label for="selectProfesor">Profesor</label>
+        <ng-select formControlName="profesor" 
+            [items]="usuarios_profesores" 
+            [clearable]="false"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Busca y Selecciona un Profesor" 
+            class="custom-multiselect">
+        </ng-select>
+    </div>
+    <!-- [(ngModel)]="data_alumno" -->
+
+    <div class="mb-5">
+        <label for="selectAlumnos">Alumnos</label>
+        <ng-select 
+            formControlName="alumno"  
+            [items]="usuarios_alumnos" 
+            [clearable]="false"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Busca y Selecciona un Alumno" 
+            [multiple]="true"
+            class="custom-multiselect">
+        </ng-select>
+    </div>
+
+    <ng-container *ngIf="params.get('id')!.value > 0">
+        
+        <div class="mb-5" >
+                <div class="mb-5 flex items-center justify-between">
+                    <h5 class="text-lg font-semibold dark:text-white-light">Tabla de Contenidos</h5>
+                    <button type="button" (click)="ModalTablaContentsOpen()" class="btn  btn-outline-info btn-sm">
+                        <icon-plus class="h-6 w-6" />
+                    </button>
+                </div>
+
+
+                <div>
+                        <div
+                            [sortablejs]="lista_secciones"
+                            [sortablejsOptions]="normalOptions"
+                            class="grid grid-cols-1 gap-x-12 sm:grid-cols-3"
+                            (sort)="onReorder($event)"
+                        >         
+                                <ng-container *ngFor="let contenido of ContenidoCursoList; index as iter">
+                                    <div class="mb-2.5" [attr.data-id]="contenido">
+                                        <div class="rounded-md border border-white-light bg-white px-6 py-3.5 dark:border-dark dark:bg-[#1b2e4b]">
+                                            <div class="py-sm-2.5 items-md-center block text-center sm:flex ltr:md:text-left rtl:md:text-right" >
+                                                <div class="flex flex-1 flex-col items-center justify-between md:flex-row whitespace-normal break-words">
+                                                    <div class="my-3 font-semibold md:my-0">
+                                                        <div class="bg-white text-base text-dark dark:text-[#bfc9d4] whitespace-normal break-words w-52"> 
+                                                             {{  contenido.titulo_content }} 
+                                                        </div>
+                                                        <div class="bg-white text-xs text-white-dark whitespace-normal break-words">  
+                                                             <b>Fecha de creación: </b> {{  moment( contenido.creado).format('MMMM Do YYYY, h:mm:ss a')   }}
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-1 flex-col items-center justify-end md:flex-row">
+                                                    <div class="grid gap-4 grid-cols-1">
+                                                        <button type="button"  (click)="ModalTablaContentsOpen(contenido)" class="btn btn-secondary btn-sm px-1 py-1"> <icon-pencil class="h-3 w-3" /></button>
+                                                        <button type="button"  (click)="EliminarContenidoCurso(contenido)" class="btn btn-danger btn-sm px-1 py-1"> <icon-trash-lines class="h-3 w-3" /> </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-1 border-b border-b-[#f1f2f3] py-1 dark:border-b-dark">
+                                                <div *ngIf="contenido.temas && contenido.temas.length > 0; else noTemas">
+                                                    <label for="" class="bg-white">   <b>Total Temas: </b>  {{  contenido.temas.length  }} </label>
+                                                </div>
+                                                <ng-template #noTemas>
+                                                    <label for="" class="bg-white">   <b>Total Temas: </b>  No hay temas disponibles </label>
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                        </div>
+                </div>
+        </div>
+
+
+        <div class="mt-8 flex items-center justify-end">
+            <!-- <button type="button" class="btn btn-outline-danger" (click)="CerrarModal()">Cancel</button> -->
+        </div>
+
+        <div class="mb-5" >
+            <div class="mb-5 flex items-center justify-center">
+                    <ng-container *ngIf="Registro_ExamenCurso.length > 0; else NoExamen">
+                        <h5 class="text-lg font-semibold dark:text-white-light">Ver Examen Final &nbsp;&nbsp;&nbsp;</h5>
+                        <button type="button" (click)="ModalExamenCursoOpen(Registro_ExamenCurso)" class="btn btn-outline-info btn-sm">
+                        <icon-eye class="h-6 w-6"></icon-eye>
+                        </button>
+                    </ng-container>
+                    <ng-template #NoExamen>
+                        <h5 class="text-lg font-semibold dark:text-white-light">Crear Examen Final &nbsp;&nbsp;&nbsp;</h5>
+                        <button type="button" (click)="ModalExamenCursoOpen()" class="btn btn-outline-info btn-sm">
+                        <icon-plus class="h-6 w-6"></icon-plus>
+                        </button>
+                    </ng-template>
+            </div>
+        </div>
+    </ng-container>
+
+    <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ params.get('id')!.value ? 'Actualizar' : 'Crear' }} Curso</button>
+</form>
+
+
+
+<!-- Modal -->
+<modal #ModalTblContenidos class="modal-top extra-large-modal animate animate-fade-in-up" [ngClass]="'animate-fade-in-up'" [closeOnOutsideClick]="false">
+
+    <ng-template #modalHeader>
+        <div class="!font-medium" >{{ params_tbl_cont.controls['id'].value ? 'Editar' : 'Registrar' }} Tabla de Contenido </div>    
+    </ng-template>
+    <ng-template #modalBody>
+        <app-modal_tabla_contenidos> </app-modal_tabla_contenidos>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="ModalTablaContentsCerrar()" class="btn btn-outline-danger">Cerrar</button>
+    </ng-template>
+</modal>
+
+
+<!-- Modal -->
+<modal #ModalExamenCurso class="modal-top extra-large-modal animate animate-fade-in-up" [ngClass]="'animate-fade-in-up'" [closeOnOutsideClick]="false">
+
+    <ng-template #modalHeader>
+        <div class="!font-medium" >{{ params_examen_curso.controls['id'].value ? 'Editar' : 'Registrar' }} Examen de Curso</div>    
+    </ng-template>
+    <ng-template #modalBody>
+        <app-modal_examen_curso> </app-modal_examen_curso>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button type="button" (click)="ModalExamenCursoCerrar()" class="btn btn-outline-danger">Cerrar</button>
+    </ng-template>
+</modal>
+

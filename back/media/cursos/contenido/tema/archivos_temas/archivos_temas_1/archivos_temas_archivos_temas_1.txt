@@ -1,0 +1,29 @@
+app.post('/send-imagen-grupo', async (req, res) => {
+    const { nombre, archivo } = req.body;
+
+    if (!nombre || !archivo) {
+        return res.status(400).json({ error: 'Debe proporcionar el nombre del grupo y el archivo de la imagen.' });
+    }
+
+    try {
+        // Buscar el grupo por su nombre
+        const chats = await client.getChats();
+        const grupo = chats.find(chat => chat.isGroup && chat.name === nombre);
+
+        if (!grupo) {
+            return res.status(404).json({ error: `No se encontró un grupo con el nombre: ${nombre}` });
+        }
+
+        const chatId = grupo.id._serialized;
+
+        // Enviar la imagen al grupo
+        const media = MessageMedia.fromFilePath(archivo);
+        await client.sendMessage(chatId, media, { caption: `Imagen enviada al grupo ${nombre}` });
+
+        console.log(`✅ Imagen enviada al grupo ${nombre} (${chatId}).`);
+        res.json({ success: true, message: `✅ Imagen enviada al grupo ${nombre}` });
+    } catch (error) {
+        console.error('❌ Error al enviar la imagen:', error.message);
+        res.status(500).json({ error: 'Error al enviar la imagen.' });
+    }
+});
